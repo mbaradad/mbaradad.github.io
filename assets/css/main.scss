@@ -39,3 +39,29 @@
 @import "vendor/font-awesome/brands";
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
+
+/* 
+	custom css
+*/ 
+
+#publications article  {
+    overflow: hidden;
+    width: 100%;
+}
+
+#publications article a img{
+    background-color: black;
+    width: 30%;
+    float: left;
+}
+
+
+#publications article .pub_text{
+    width: 67%;
+    margin-left: 3%;
+    float: left;
+}
+
+#intro {
+    width: 70%;
+}
