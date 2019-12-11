@@ -50,7 +50,7 @@ fortunate to work in the Image Processing Group under the supervision of
     <article>
 		<a class="pub_image"><img src="files/publications/1_rsis/snapshot.png" alt=""></a>
 		<div class="pub_text">
-			<h3>Inferring Light Fields From Shadows</h3>
+			<h3>Recurrent Neural Networks for Semantic Instance Segmentation</h3>
 		    <h4 class="authors"> 
                 Amaia Salvador, Miriam Bellver, Victor Campos, <b>Manel Baradad</b>, Ferran Marques, Jordi Torres, Xavier Giro-i-Nieto
 			</h4>
