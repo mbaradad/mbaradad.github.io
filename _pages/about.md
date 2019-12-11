@@ -12,8 +12,8 @@ redirect_from:
 <p align="justify">
 I am Manel Baradad Jurjo, second year PhD student at MIT under the supervision of 
 <a href="http://web.mit.edu/torralba/www/">Prof. Antonio Torralba</a>.
-I currently work in 3D scene understanding, but I am also interested in computational photography and embodied vision.
-Before, coming to MIT I did my undergrad at <a href="https://cfis.upc.edu/en">CFIS-UPC</a> where I was 
+I currently work in 3D scene understanding, but I am also interested in embodied vision and computational photography.
+Before coming to MIT, I did my undergrad at <a href="https://cfis.upc.edu/en">CFIS-UPC</a>, where I was 
 fortunate to work in the Image Processing Group under the supervision of 
 <a href="https://imatge.upc.edu/web/people/xavier-giro">Prof. Xavier Giró-i-Nieto</a>.
 </p>
