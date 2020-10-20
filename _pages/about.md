@@ -26,7 +26,7 @@ fortunate to work in the Image Processing Group under the supervision of
         <div class="pub_text">
             <h3>Height and Uprightness Invariance for 3D Prediction From a Single View</h3>
             <h4 class="authors">
-                <b>Manel Baradad, Antonio Torralba</b>
+                <b>Manel Baradad</b>, Antonio Torralba
             </h4>
             <p>CVPR 2020</p>
             [<a href="https://openaccess.thecvf.com/content_CVPR_2020/papers/Baradad_Height_and_Uprightness_Invariance_for_3D_Prediction_From_a_Single_CVPR_2020_paper.pdf">paper</a>]
