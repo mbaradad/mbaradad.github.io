@@ -21,6 +21,19 @@ fortunate to work in the Image Processing Group under the supervision of
 
 <div><h1>Publications</h1></div>
 <div id="publications">
+    <article>
+        <a class="pub_image"><img src="files/publications/4_uprightness_invariants/snapshot.gif"></a>
+        <div class="pub_text">
+            <h3>Height and Uprightness Invariance for 3D Prediction From a Single View</h3>
+            <h4 class="authors">
+                <b>Manel Baradad, Antonio Torralba</b>
+            </h4>
+            <p>CVPR 2020</p>
+            [<a href="https://openaccess.thecvf.com/content_CVPR_2020/papers/Baradad_Height_and_Uprightness_Invariance_for_3D_Prediction_From_a_Single_CVPR_2020_paper.pdf">paper</a>]
+            [<a href="https://github.com/mbaradad/im2pcl">code</a>]
+            [<a href="https://www.youtube.com/watch?v=qtb-tKgcTJw">video</a>]
+        </div>
+    </article>
 	<article>
 		<a class="pub_image"><img src="files/publications/3_unknown_occluders/snapshot.png"></a>
 		<div class="pub_text">
@@ -29,8 +42,7 @@ fortunate to work in the Image Processing Group under the supervision of
                 Adam B. Yedidia, <b>Manel Baradad</b>, Christos Thrampoulidis, William T. Freeman, Gregory W. Wornell
 			</h4>
             <p>CVPR 2019</p>
-			[<a href="https://zpascal.net/cvpr2018/Baradad_Inferring_Light_Fields_CVPR_2018_paper.pdf">paper</a>]
-			[<a href="https://github.com/mbaradad/shadow2lightfield">code</a>]
+			[<a href="https://www.rle.mit.edu/sia/wp-content/uploads/2019/07/2019-yedidia-baradad-thrampoulidis-freeman-wornell-cvpr.pdf">paper</a>]
 		</div>
 	</article>
 	
@@ -39,10 +51,10 @@ fortunate to work in the Image Processing Group under the supervision of
 		<div class="pub_text">
 			<h3>Inferring Light Fields From Shadows</h3>
 		    <h4 class="authors"> 
-                <b>Manel Baradad</b>, Vickie Ye, Adam B. Yedidia, Fredo Durand, William T. Freeman, Gregory W. Wornell and Antonio Torralba
+                <b>Manel Baradad</b>, Vickie Ye, Adam B. Yedidia, Fredo Durand, William T. Freeman, Gregory W. Wornell, Antonio Torralba
 			</h4>
             <p>CVPR 2018</p>
-			[<a href="https://zpascal.net/cvpr2018/Baradad_Inferring_Light_Fields_CVPR_2018_paper.pdf">paper</a>]
+			[<a href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Baradad_Inferring_Light_Fields_CVPR_2018_paper.pdf">paper</a>]
 			[<a href="https://github.com/mbaradad/shadow2lightfield">code</a>]
 		</div>
 	</article>
