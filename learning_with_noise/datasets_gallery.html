@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <link media="all" href="glab.css" type="text/css" rel="StyleSheet">
+<style type="text/css" media="all">
+IMG {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: right;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px
+}
+#primarycontent {
+	MARGIN-LEFT: auto; ; WIDTH: expression(document.body.clientWidth >
+1000? "1000px": "auto" ); MARGIN-RIGHT: auto; TEXT-ALIGN: left; max-width:
+1000px }
+BODY {
+	TEXT-ALIGN: center
+}
+</style>
+
+<style type="text/css">
+  body {
+    font-family: "Titillium Web","HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+    font-size:18px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width: 100%;
+  }
+
+  h1 {
+    font-weight:300;
+  }
+
+  div {
+    max-width: 95%;
+    margin:auto;
+    padding: 10px;
+  }
+
+  .table-like {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+
+  .disclaimerbox {
+    background-color: #eee;
+    border: 1px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+    padding: 20px;
+  }
+
+  video.header-vid {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  img {
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  iframe {
+    max-width: 100%;
+  }
+
+  img.header-img {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  img.rounded {
+    border: 1px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  a:link,a:visited
+  {
+    color: #1367a7;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #208799;
+  }
+
+  td.dl-link {
+    height: 160px;
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+            0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+            5px 5px 0 0px #fff, /* The second layer */
+            5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+            10px 10px 0 0px #fff, /* The third layer */
+            10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+            15px 15px 0 0px #fff, /* The fourth layer */
+            15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+            20px 20px 0 0px #fff, /* The fifth layer */
+            20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+            25px 25px 0 0px #fff, /* The fifth layer */
+            25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+    margin-left: 10px;
+    margin-right: 45px;
+  }
+
+
+  .layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+            0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+            5px 5px 0 0px #fff, /* The second layer */
+            5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+            10px 10px 0 0px #fff, /* The third layer */
+            10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 30px;
+    margin-bottom: 5px;
+  }
+
+  .vert-cent {
+    position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+  }
+
+  hr
+  {
+    border: 0;
+    height: 1px;
+    max-width: 1100px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  }
+
+  #authors td {
+    padding-bottom:5px;
+    padding-top:30px;
+  }
+</style>
+
+<script type="text/javascript">
+
+
+window.onload = function() {
+var elements = document.getElementsByClassName("result");
+
+var myFunctionClick = function() {
+    var elements = document.getElementsByClassName("result-active");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].className = "result";
+    }
+    this.className = "result result-active";
+    var dataset_text = document.getElementById("dataset-text")
+    var dataset_image = document.getElementById("dataset-image")
+    dataset_image.src = this.src.replace('/single', '')
+    dataset_text.innerHTML = this.alt
+};
+var myFunctionHover = function() {
+    alert('hover');
+};
+
+for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', myFunctionClick, false);
+    elements[i].addEventListener('hover', myFunctionHover, false);
+}
+
+};
+
+</script>
+
+<style>
+.result-cell {
+
+}
+.result {
+    border: 3px solid transparent;
+
+}
+.result:hover {
+    border: 3px solid #666666;
+}
+.result-active {
+    border: 3px solid #228B22;
+}
+.result-cell-spacing {
+    width: 5px;
+}
+/*
+.card:hover {
+    background: url("https://www.tutorialrepublic.com//examples/images/card-front.jpg") no-repeat;
+} */
+</style>
+
+</head>
+<body>
+    <center>
+  <table style="margin-top: auto; margin-bottom: auto;"border="0" cellspacing="0" cellpadding="0" height="57px" overflow="visible">
+    <tr>
+       <td class="result-cell">
+            <img class="result result-active" src="images/datasets/single/0-dead_leaves_square.jpg" alt="Dead leaves - Squares">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/1-dead_leaves_oriented_square.jpg" alt="Dead leaves - Oriented">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/2-dead_leaves_mixed.jpg" alt="Dead leaves - Shapes ">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/3-dead_leaves_oriented_square_texture.jpg" alt="Dead leaves - Textures">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/4-statistical_spectrum.jpg" alt="Spectrum">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/5-statistical_wmm.jpg" alt="WMM">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/6-statistical_spectrum_color.jpg" alt="Spectrum + Color">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/7-statistical_spectrum_color_wmm.jpg" alt="Spectrum + Color + WMM">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/8-stylegan-default.jpg" alt="StyleGAN - Random">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/9-stylegan-noise-and-wavelets.jpg" alt="StyleGAN - High freq.">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/10-stylegan-laplacian-and-bias.jpg" alt="StyleGAN - Sparse">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/11-stylegan-tied-wavelets.jpg" alt="StyleGAN - Oriented">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/12-features-activations-random.jpg" alt="Feature vis. - Random">
+       </td>
+       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/13-features-dead-leaves.jpg" alt="Feature vis. - Dead leaves">
+       </td>
+    </table>
+    <div>
+        <h3 id='dataset-text'>Dead leaves - Squares</h3>
+        <img id='dataset-image' src="images/datasets/0-dead_leaves_square.jpg" style="float:none">
+    </div>
+
+
+    </center>
+
+
+</body>
+</html>
