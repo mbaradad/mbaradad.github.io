@@ -165,15 +165,16 @@ window.onload = function() {
 var elements = document.getElementsByClassName("result");
 
 var myFunctionClick = function() {
-    var elements = document.getElementsByClassName("result-active");
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].className = "result";
+    if (this.className == 'result-correct') return;
+    if (this.className == 'result-incorrect') return;
+
+    if (this.className == "result result-active") {
+        this.className = "result"
     }
-    this.className = "result result-active";
-    var dataset_text = document.getElementById("dataset-text")
-    var dataset_image = document.getElementById("dataset-image")
-    dataset_image.src = this.src.replace('/single', '')
-    dataset_text.innerHTML = this.alt
+    else {
+        this.className = "result result-active"
+    }
+
 };
 var myFunctionHover = function() {
     alert('hover');
@@ -185,6 +186,40 @@ for (var i = 0; i < elements.length; i++) {
 }
 
 };
+</script>
+
+<script>
+function myFunctionButtonClick() {
+    var elements = document.getElementsByClassName("result");
+    var n_correct = 0;
+    var n_elements = elements.length;
+    for (var i = elements.length - 1; i >= 0; i--) {
+        var correct = false;
+        if (elements[i].className == 'result result-active') {
+            if (elements[i].alt == 'imagenet') {
+                correct = true;
+            }
+        }else {
+            if (elements[i].alt == 'generated') {
+                correct = true;
+            }
+        }
+        if (correct) {
+            n_correct += 1;
+            elements[i].className = 'result-correct'
+        } else {
+            elements[i].className = 'result-incorrect'
+        }
+
+    }
+    document.getElementById('dataset-description').innerHTML = "You got " + n_correct + "/" + n_elements + " correct!."
+    document.getElementById("results-button").disabled = true;
+
+    var elements = document.getElementsByClassName("result-text");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].style.visibility = 'visible';
+    }
+}
 </script>
 
 <style>
@@ -199,83 +234,111 @@ for (var i = 0; i < elements.length; i++) {
     border: 3px solid #666666;
 }
 .result-active {
-    border: 3px solid #228B22;
+    border: 3px solid #22228B;
 }
 .result-cell-spacing {
     width: 5px;
 }
+
+.result-incorrect {
+    border: 3px solid #C90000;
+}
+.result-correct {
+    border: 3px solid #00C900;
+}
+.result-text {
+    font-size: 13px;
+    font-size: 1.4vw;
+    margin-left: 3px;
+    width: 30px;
+    text-align: center;
+    visibility: hidden;
+}
+
 </style>
 
 </head>
 <body>
-    <center>
-  <table style="margin-top: auto; margin-bottom: auto;"border="0" cellspacing="0" cellpadding="0" height="57px" overflow="visible">
-    <tr>
+  <center>
+  <table style="margin-top: auto; margin-bottom: auto;"border="0" cellspacing="0" cellpadding="0" height="57px">
+       <tr>
        <td class="result-cell">
-            <img class="result result-active" src="images/datasets/single/0-dead_leaves_square.jpg" alt="Dead leaves - Squares">
+            <img class="result" src="images/game/1.jpg" alt="imagenet">
+            <p class="result-text" width=50px>Imagenet</p>
        </td>
        <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/1-dead_leaves_oriented_square.jpg" alt="Dead leaves - Oriented">
+            <img class="result" src="images/game/2.jpg" alt="generated">
+            <p class="result-text">Generated</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/2-dead_leaves_mixed.jpg" alt="Dead leaves - Shapes ">
+            <img class="result" src="images/game/3.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/3-dead_leaves_oriented_square_texture.jpg" alt="Dead leaves - Textures">
+            <img class="result" src="images/game/4.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/4-statistical_spectrum.jpg" alt="Spectrum">
+            <img class="result" src="images/game/5.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/5-statistical_wmm.jpg" alt="WMM">
+            <img class="result" src="images/game/6.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/6-statistical_spectrum_color.jpg" alt="Spectrum + Color">
+            <img class="result" src="images/game/7.jpg" alt="generated">
+            <p class="result-text">Generated</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/7-statistical_spectrum_color_wmm.jpg" alt="Spectrum + Color + WMM">
+            <img class="result" src="images/game/8.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/8-stylegan-default.jpg" alt="StyleGAN - Random">
+            <img class="result" src="images/game/9.jpg" alt="generated">
+            <p class="result-text">Generated</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/9-stylegan-noise-and-wavelets.jpg" alt="StyleGAN - High freq.">
+            <img class="result" src="images/game/10.jpg" alt="generated">
+            <p class="result-text">Generated</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/10-stylegan-laplacian-and-bias.jpg" alt="StyleGAN - Sparse">
+            <img class="result" src="images/game/11.jpg" alt="generated">
+            <p class="result-text">Generated</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/11-stylegan-tied-wavelets.jpg" alt="StyleGAN - Oriented">
+            <img class="result" src="images/game/12.jpg" alt="generated">
+            <p class="result-text">Generated</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/12-features-activations-random.jpg" alt="Feature vis. - Random">
+            <img class="result" src="images/game/13.jpg" alt="generated">
+            <p class="result-text">Generated</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
        <td class="result-cell">
-            <img class="result" src="images/datasets/single/13-features-dead-leaves.jpg" alt="Feature vis. - Dead leaves">
+            <img class="result" src="images/game/14.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
        </td>
-       <td class="result-cell-spacing" width="3"></td>
-       <td class="result-cell-spacing" width="3"></td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell-spacing"></td>
 
     </table>
     <div>
-        <h3 id='dataset-text'>Dead leaves - Squares</h3>
-        <img id='dataset-image' src="images/datasets/0-dead_leaves_square.jpg" style="float:none">
+        <p id="dataset-description">Select the examples that you think come from real Imagenet1k samples after a MoCo v2 augmentation. The rest are examples from our generated datasets that maximally fool a classifier between Imagenet1k and our generated datasets.</p>
+        <button id='results-button' onclick="myFunctionButtonClick()">Show results</button>
     </div>
-    <p>Select the samples you think come from Imagenet1k after MoCo v2 augmentations.</p>
-
     </center>
 
 
