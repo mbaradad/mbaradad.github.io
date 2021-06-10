@@ -158,35 +158,6 @@ BODY {
   }
 </style>
 
-<style>
-    .card {
-        width: 55px;
-        height: 55px;
-        /* background: url("https://www.tutorialrepublic.com//examples/images/card-back.jpg") no-repeat;
-        /*margin: 50px;*/
-
-    }
-    .result {
-        width: 55px;
-        height: 55px;
-        border: 3px solid transparent;
-
-    }
-    .result:hover {
-        border: 3px solid #666666;
-    }
-    .result-active {
-        border: 3px solid #228B22;
-    }
-    /*
-    .card:hover {
-        background: url("https://www.tutorialrepublic.com//examples/images/card-front.jpg") no-repeat;
-    } */
-</style>
-
-
-
-
 <script type="text/javascript">
 
 
@@ -214,75 +185,104 @@ for (var i = 0; i < elements.length; i++) {
 }
 
 };
-
 </script>
+
+<style>
+.result-cell {
+
+}
+.result {
+    border: 3px solid transparent;
+
+}
+.result:hover {
+    border: 3px solid #666666;
+}
+.result-active {
+    border: 3px solid #228B22;
+}
+.result-cell-spacing {
+    width: 5px;
+}
+</style>
 
 </head>
 <body>
-    <center>
-
+  <center>
   <table style="margin-top: auto; margin-bottom: auto;"border="0" cellspacing="0" cellpadding="0" height="57px">
        <tr>
-           <td class="card" align="center" valign="bottom" width=900>
-            <img class="result result-active" src="images/datasets/single/0-dead_leaves_square.jpg" alt="Dead leaves - Squares" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/1-dead_leaves_oriented_square.jpg" alt="Dead leaves - Oriented" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/2-dead_leaves_mixed.jpg" alt="Dead leaves - Shapes " style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/3-dead_leaves_oriented_square_texture.jpg" alt="Dead leaves - Textures" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/4-statistical_spectrum.jpg" alt="Spectrum" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/5-statistical_wmm.jpg" alt="WMM" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/6-statistical_spectrum_color.jpg" alt="Spectrum + Color" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/7-statistical_spectrum_color_wmm.jpg" alt="Spectrum + Color + WMM" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/8-stylegan-default.jpg" alt="StyleGAN - Random" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/9-stylegan-noise-and-wavelets.jpg" alt="StyleGAN - High freq." style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/10-stylegan-laplacian-and-bias.jpg" alt="StyleGAN - Sparse" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/11-stylegan-tied-wavelets.jpg" alt="StyleGAN - Oriented" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/12-features-activations-random.jpg" alt="Feature vis. - Random" style="width: 100%">
-        </td>
-       <td width="3"></td>
-     <td class="card" align="center" valign="bottom" width=900>
-            <img class="result" src="images/datasets/single/13-features-dead-leaves.jpg" alt="Feature vis. - Dead leaves" style="width: 100%">
-        </td>
+       <td class="result-cell">
+            <img class="result result-active" src="images/datasets/single/0-dead_leaves_square.jpg" alt="Dead leaves - Squares">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/1-dead_leaves_oriented_square.jpg" alt="Dead leaves - Oriented">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/2-dead_leaves_mixed.jpg" alt="Dead leaves - Shapes ">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/3-dead_leaves_oriented_square_texture.jpg" alt="Dead leaves - Textures">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/4-statistical_spectrum.jpg" alt="Spectrum">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/5-statistical_wmm.jpg" alt="WMM">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/6-statistical_spectrum_color.jpg" alt="Spectrum + Color">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/7-statistical_spectrum_color_wmm.jpg" alt="Spectrum + Color + WMM">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/8-stylegan-default.jpg" alt="StyleGAN - Random">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/9-stylegan-noise-and-wavelets.jpg" alt="StyleGAN - High freq.">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/10-stylegan-laplacian-and-bias.jpg" alt="StyleGAN - Sparse">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/11-stylegan-tied-wavelets.jpg" alt="StyleGAN - Oriented">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/12-features-activations-random.jpg" alt="Feature vis. - Random">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/13-features-dead-leaves.jpg" alt="Feature vis. - Dead leaves">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/14-places.jpg" alt="Places">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/datasets/single/15-imagenet100.jpg" alt="Imagenet100">
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell-spacing"></td>
+
     </table>
     <div>
         <h3 id='dataset-text'>Dead leaves - Squares</h3>
-        <img id='dataset-image' src="images/features/0-dead_leaves_square.jpg" width="800px" style="float:none">
+        <img id='dataset-image' src="images/features/0-dead_leaves_square.jpg" style="float:none">
     </div>
+
 
 
     </center>
