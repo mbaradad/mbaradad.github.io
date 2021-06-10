@@ -189,7 +189,7 @@ for (var i = 0; i < elements.length; i++) {
 
 <style>
 .result-cell {
-
+    width:6.6vw
 }
 .result {
     border: 3px solid transparent;
@@ -202,14 +202,65 @@ for (var i = 0; i < elements.length; i++) {
     border: 3px solid #228B22;
 }
 .result-cell-spacing {
-    width: 5px;
+    width: 3px;
 }
+.cell-empty{
+    background-color: "transparent";
+    font-size: 1.3vw;
+}
+
+.cell-dead-leaves{
+    background-color: #8FFF00;
+    font-size: 1.3vw;
+}
+
+.cell-statistical{
+    background-color: #FD8D28;
+    font-size: 1.3vw;
+}
+.cell-stylegan{
+    background-color: #F6FD58;
+    font-size: 1.3vw;
+}
+.cell-feature-vis{
+    background-color: #58D8FD;
+    font-size: 1.3vw;
+}
+
+.cell-real{
+    background-color: "transparent";
+    font-size: 1.3vw;
+}
+
+table {
+  table-layout: fixed;
+}
+
+#dataset-image{
+    width: 100vw;
+}
+th,
+td {
+  overflow: hidden;
+}
+
 </style>
 
 </head>
 <body>
     <center>
-  <table style="margin-top: auto; margin-bottom: auto;"border="0" cellspacing="0" cellpadding="0" height="57px" overflow="visible">
+  <table>
+    <tr>
+        <td colspan="7" class="cell-dead-leaves">Dead leaves</td>
+        <td class="cell-empty"></td>
+        <td colspan="7" class="cell-statistical">Statistical</td>
+        <td class="cell-empty"></td>
+        <td colspan="7" class="cell-stylegan">Stylegan</td>
+        <td class="cell-empty"></td>
+        <td colspan="3" class="cell-feature-vis">Features</td>
+        <td class="cell-empty"></td>
+        <td class="cell-empty"></td>
+    </tr>
     <tr>
        <td class="result-cell">
             <img class="result result-active" src="images/datasets/single/0-dead_leaves_square.jpg" alt="Dead leaves - Squares">
@@ -268,7 +319,7 @@ for (var i = 0; i < elements.length; i++) {
        </td>
        <td class="result-cell-spacing" width="3"></td>
        <td class="result-cell-spacing" width="3"></td>
-
+    </tr>
     </table>
     <div>
         <p>Click the images above to see examples from each dataset</p>
