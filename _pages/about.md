@@ -10,7 +10,7 @@ redirect_from:
 
 <div class="intro">
 <p align="justify">
-I am Manel Baradad Jurjo, second year PhD student at MIT under the supervision of 
+I am Manel Baradad Jurjo, forth year PhD student at MIT under the supervision of 
 <a href="http://web.mit.edu/torralba/www/">Prof. Antonio Torralba</a>.
 I currently work in 3D scene understanding, but I am also interested in embodied vision and computational photography.
 Before coming to MIT, I did my undergrad at <a href="https://cfis.upc.edu/en">CFIS-UPC</a>, where I was 
@@ -21,6 +21,20 @@ fortunate to work in the Image Processing Group under the supervision of
 
 <div><h1>Publications</h1></div>
 <div id="publications">
+    <article>
+        <a classa="pub_image"><img src="files/publications/5_noise_learning//snapshot.png"></a>
+        <div class="pub_text">
+            <h3>Learning to See by Looking at Noise</h3>
+            <h4 class="authors">
+                <b>Manel Baradad*</b>, Jonas Wulff*, Tongzhou Wang, Phillip Isola, Antonio Torralba
+            </h4>
+            <p>NeurIPS 2021</p>
+            [<a href="https://arxiv.org/pdf/2106.05963.pdf">pre-print</a>]
+            [<a href="https://mbaradad.github.io/learning_with_noise/">webpage</a>]
+            [<a href="https://github.com/mbaradad/learning_with_noise">code</a>]
+        </div>
+    </article>
+
     <article>
         <a class="pub_image"><img src="files/publications/4_uprightness_invariants/snapshot.gif"></a>
         <div class="pub_text">
@@ -56,6 +70,7 @@ fortunate to work in the Image Processing Group under the supervision of
             <p>CVPR 2018</p>
 			[<a href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Baradad_Inferring_Light_Fields_CVPR_2018_paper.pdf">paper</a>]
 			[<a href="https://github.com/mbaradad/shadow2lightfield">code</a>]
+            [<a href="https://www.youtube.com/watch?v=c0BdQN-KZSM">video</a>]
 		</div>
 	</article>
 	
