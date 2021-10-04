@@ -22,13 +22,13 @@ fortunate to work in the Image Processing Group under the supervision of
 <div><h1>Publications</h1></div>
 <div id="publications">
     <article>
-        <a classa="pub_image"><img src="files/publications/5_noise_learning//snapshot.png"></a>
+        <a classa="pub_image"><img src="files/publications/5_noise_learning/snapshot.png"></a>
         <div class="pub_text">
             <h3>Learning to See by Looking at Noise</h3>
             <h4 class="authors">
                 <b>Manel Baradad*</b>, Jonas Wulff*, Tongzhou Wang, Phillip Isola, Antonio Torralba
             </h4>
-            <p>NeurIPS 2021</p>
+            <p>NeurIPS 2021 (Spotlight)</p>
             [<a href="https://arxiv.org/pdf/2106.05963.pdf">pre-print</a>]
             [<a href="https://mbaradad.github.io/learning_with_noise/">webpage</a>]
             [<a href="https://github.com/mbaradad/learning_with_noise">code</a>]
@@ -67,7 +67,7 @@ fortunate to work in the Image Processing Group under the supervision of
 		    <h4 class="authors"> 
                 <b>Manel Baradad</b>, Vickie Ye, Adam B. Yedidia, Fredo Durand, William T. Freeman, Gregory W. Wornell, Antonio Torralba
 			</h4>
-            <p>CVPR 2018</p>
+            <p>CVPR 2018 (Spotlight)</p>
 			[<a href="https://openaccess.thecvf.com/content_cvpr_2018/papers/Baradad_Inferring_Light_Fields_CVPR_2018_paper.pdf">paper</a>]
 			[<a href="https://github.com/mbaradad/shadow2lightfield">code</a>]
             [<a href="https://www.youtube.com/watch?v=c0BdQN-KZSM">video</a>]
