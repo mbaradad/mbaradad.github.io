@@ -29,7 +29,7 @@ fortunate to work in the Image Processing Group under the supervision of
                 <b>Manel Baradad*</b>, Jonas Wulff*, Tongzhou Wang, Phillip Isola, Antonio Torralba
             </h4>
             <p>NeurIPS 2021 (Spotlight)</p>
-            [<a href="https://arxiv.org/pdf/2106.05963.pdf">pre-print</a>]
+            [<a href="https://arxiv.org/pdf/2106.05963.pdf">paper</a>]
             [<a href="https://mbaradad.github.io/learning_with_noise/">webpage</a>]
             [<a href="https://github.com/mbaradad/learning_with_noise">code</a>]
         </div>
