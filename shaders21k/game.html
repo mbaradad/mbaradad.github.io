@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <link media="all" href="glab.css" type="text/css" rel="StyleSheet">
+<style type="text/css" media="all">
+IMG {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: right;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px
+}
+#primarycontent {
+	MARGIN-LEFT: auto; ; WIDTH: expression(document.body.clientWidth >
+1000? "1000px": "auto" ); MARGIN-RIGHT: auto; TEXT-ALIGN: left; max-width:
+1000px }
+BODY {
+	TEXT-ALIGN: center
+}
+</style>
+
+<style type="text/css">
+  body {
+    font-family: "Titillium Web","HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+    font-size:18px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width: 100%;
+  }
+
+  h1 {
+    font-weight:300;
+  }
+
+  div {
+    max-width: 95%;
+    margin:auto;
+    padding: 10px;
+  }
+
+  .table-like {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+
+  .disclaimerbox {
+    background-color: #eee;
+    border: 1px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+    padding: 20px;
+  }
+
+  video.header-vid {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  img {
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  iframe {
+    max-width: 100%;
+  }
+
+  img.header-img {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  img.rounded {
+    border: 1px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  a:link,a:visited
+  {
+    color: #1367a7;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #208799;
+  }
+
+  td.dl-link {
+    height: 160px;
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+            0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+            5px 5px 0 0px #fff, /* The second layer */
+            5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+            10px 10px 0 0px #fff, /* The third layer */
+            10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+            15px 15px 0 0px #fff, /* The fourth layer */
+            15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+            20px 20px 0 0px #fff, /* The fifth layer */
+            20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+            25px 25px 0 0px #fff, /* The fifth layer */
+            25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+    margin-left: 10px;
+    margin-right: 45px;
+  }
+
+
+  .layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+            0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+            5px 5px 0 0px #fff, /* The second layer */
+            5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+            10px 10px 0 0px #fff, /* The third layer */
+            10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 30px;
+    margin-bottom: 5px;
+  }
+
+  .vert-cent {
+    position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+  }
+
+  hr
+  {
+    border: 0;
+    height: 1px;
+    max-width: 1100px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  }
+
+  #authors td {
+    padding-bottom:5px;
+    padding-top:30px;
+  }
+</style>
+
+<script type="text/javascript">
+
+
+window.onload = function() {
+var elements = document.getElementsByClassName("result");
+
+var myFunctionClick = function() {
+    if (this.className == 'result-correct') return;
+    if (this.className == 'result-incorrect') return;
+
+    if (this.className == "result result-active") {
+        this.className = "result"
+    }
+    else {
+        this.className = "result result-active"
+    }
+    this.style.border = '3px solid transparent;'
+};
+
+for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', myFunctionClick, false);
+}
+
+};
+</script>
+
+<script>
+function myFunctionButtonClick() {
+    var elements = document.getElementsByClassName("result");
+    var n_correct = 0;
+    var n_elements = elements.length;
+    for (var i = elements.length - 1; i >= 0; i--) {
+        var correct = false;
+        if (elements[i].className == 'result result-active') {
+            if (elements[i].alt == 'imagenet') {
+                correct = true;
+            }
+        }else {
+            if (elements[i].alt == 'generated') {
+                correct = true;
+            }
+        }
+        if (correct) {
+            n_correct += 1;
+            elements[i].className = 'result-correct'
+        } else {
+            elements[i].className = 'result-incorrect'
+        }
+
+    }
+    document.getElementById('dataset-description').innerHTML = "You got " + n_correct + "/" + n_elements + " correct!"
+    document.getElementById("results-button").disabled = true;
+
+    var elements = document.getElementsByClassName("result-text");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].style.visibility = 'visible';
+    }
+}
+</script>
+
+<style>
+.result-cell {
+
+}
+.result {
+    border: 3px solid transparent;
+
+}
+.result:hover {
+    border: 3px solid #666666;
+}
+.result-active {
+    border: 3px solid #22228B;
+}
+.result-active:hover {
+    border: 3px solid #22228B;
+}
+.result-cell-spacing {
+    width: 5px;
+}
+
+.result-incorrect {
+    border: 3px solid #C90000;
+}
+.result-correct {
+    border: 3px solid #00C900;
+}
+.result-text {
+    font-size: 13px;
+    font-size: 1.4vw;
+    margin-left: 3px;
+    width: 30px;
+    text-align: center;
+    visibility: hidden;
+}
+
+</style>
+
+</head>
+<body>
+  <center>
+  <table style="margin-top: auto; margin-bottom: auto;"border="0" cellspacing="0" cellpadding="0" height="57px">
+       <tr>
+       <td class="result-cell">
+            <img class="result" src="images/game/1.jpg" alt="imagenet">
+            <p class="result-text" width=50px>Imagenet</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/2.jpg" alt="generated">
+            <p class="result-text">Generated</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/3.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/4.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/5.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/6.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/7.jpg" alt="generated">
+            <p class="result-text">Generated</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/8.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/9.jpg" alt="generated">
+            <p class="result-text">Generated</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/10.jpg" alt="generated">
+            <p class="result-text">Generated</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/11.jpg" alt="generated">
+            <p class="result-text">Generated</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/12.jpg" alt="generated">
+            <p class="result-text">Generated</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/13.jpg" alt="generated">
+            <p class="result-text">Generated</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/game/14.jpg" alt="imagenet">
+            <p class="result-text">Imagenet</p>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell-spacing"></td>
+
+    </table>
+    <div>
+        <p id="dataset-description">Select the examples that you think come from real Imagenet1k samples after a MoCo v2 augmentation. The rest are examples from our generated datasets that maximally fool a classifier that discriminates between Imagenet1k and our generated datasets.</p>
+        <button id='results-button' onclick="myFunctionButtonClick()">Show results</button>
+    </div>
+    </center>
+
+
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <link media="all" href="glab.css" type="text/css" rel="StyleSheet">
+<style type="text/css" media="all">
+IMG {
+	PADDING-RIGHT: 0px;
+	PADDING-LEFT: 0px;
+	FLOAT: right;
+	PADDING-BOTTOM: 0px;
+	PADDING-TOP: 0px
+}
+#primarycontent {
+	MARGIN-LEFT: auto; ; WIDTH: expression(document.body.clientWidth >
+1000? "1000px": "auto" ); MARGIN-RIGHT: auto; TEXT-ALIGN: left; max-width:
+1000px }
+BODY {
+	TEXT-ALIGN: center
+}
+</style>
+
+<style type="text/css">
+  body {
+    font-family: "Titillium Web","HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight:300;
+    font-size:18px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0px;
+    width: 100%;
+  }
+
+  h1 {
+    font-weight:300;
+  }
+
+  div {
+    max-width: 95%;
+    margin:auto;
+    padding: 10px;
+  }
+
+  .table-like {
+    display: flex;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    justify-content: center;
+  }
+
+  .disclaimerbox {
+    background-color: #eee;
+    border: 1px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+    padding: 20px;
+  }
+
+  video.header-vid {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  img {
+    padding: 0;
+    display: block;
+    margin: 0 auto;
+    max-height: 100%;
+    max-width: 100%;
+  }
+
+  iframe {
+    max-width: 100%;
+  }
+
+  img.header-img {
+    height: 140px;
+    border: 1px solid black;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  img.rounded {
+    border: 1px solid #eeeeee;
+    border-radius: 10px ;
+    -moz-border-radius: 10px ;
+    -webkit-border-radius: 10px ;
+  }
+
+  a:link,a:visited
+  {
+    color: #1367a7;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #208799;
+  }
+
+  td.dl-link {
+    height: 160px;
+    text-align: center;
+    font-size: 22px;
+  }
+
+  .layered-paper-big { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+            0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+            5px 5px 0 0px #fff, /* The second layer */
+            5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+            10px 10px 0 0px #fff, /* The third layer */
+            10px 10px 1px 1px rgba(0,0,0,0.35), /* The third layer shadow */
+            15px 15px 0 0px #fff, /* The fourth layer */
+            15px 15px 1px 1px rgba(0,0,0,0.35), /* The fourth layer shadow */
+            20px 20px 0 0px #fff, /* The fifth layer */
+            20px 20px 1px 1px rgba(0,0,0,0.35), /* The fifth layer shadow */
+            25px 25px 0 0px #fff, /* The fifth layer */
+            25px 25px 1px 1px rgba(0,0,0,0.35); /* The fifth layer shadow */
+    margin-left: 10px;
+    margin-right: 45px;
+  }
+
+
+  .layered-paper { /* modified from: http://css-tricks.com/snippets/css/layered-paper/ */
+    box-shadow:
+            0px 0px 1px 1px rgba(0,0,0,0.35), /* The top layer shadow */
+            5px 5px 0 0px #fff, /* The second layer */
+            5px 5px 1px 1px rgba(0,0,0,0.35), /* The second layer shadow */
+            10px 10px 0 0px #fff, /* The third layer */
+            10px 10px 1px 1px rgba(0,0,0,0.35); /* The third layer shadow */
+    margin-top: 5px;
+    margin-left: 10px;
+    margin-right: 30px;
+    margin-bottom: 5px;
+  }
+
+  .vert-cent {
+    position: relative;
+      top: 50%;
+      transform: translateY(-50%);
+  }
+
+  hr
+  {
+    border: 0;
+    height: 1px;
+    max-width: 1100px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  }
+
+  #authors td {
+    padding-bottom:5px;
+    padding-top:30px;
+  }
+</style>
+
+<script type="text/javascript">
+
+
+window.onload = function() {
+var elements = document.getElementsByClassName("result");
+
+var myFunctionClick = function() {
+    var elements = document.getElementsByClassName("result-active");
+    for (var i = 0; i < elements.length; i++) {
+        elements[i].className = "result";
+    }
+    this.className = "result result-active";
+    var dataset_text = document.getElementById("dataset-text")
+    var dataset_image = document.getElementById("dataset-image")
+    dataset_image.src = this.src.replace('/single', '').replace('/datasets', '/features')
+    dataset_text.innerHTML = this.alt
+};
+var myFunctionHover = function() {
+    alert('hover');
+};
+
+for (var i = 0; i < elements.length; i++) {
+    elements[i].addEventListener('click', myFunctionClick, false);
+    elements[i].addEventListener('hover', myFunctionHover, false);
+}
+
+};
+</script>
+
+<style>
+.result-cell {
+    width:6.7vw
+}
+.result {
+    border: 3px solid transparent;
+
+}
+.result:hover {
+    border: 3px solid #666666;
+}
+.result-active {
+    border: 3px solid #228B22;
+}
+.result-cell-spacing {
+    width: 0.1vw;
+}
+.cell-empty{
+    background-color: "transparent";
+    font-size: 1.3vw;
+}
+
+.cell-dead-leaves{
+    background-color: #8FFF00;
+    font-size: 1.5vw;
+}
+
+.cell-statistical{
+    background-color: #FD8D28;
+    font-size: 1.5vw;
+}
+.cell-stylegan{
+    background-color: #F6FD58;
+    font-size: 1.5vw;
+}
+.cell-feature-vis{
+    background-color: #58D8FD;
+    font-size: 1.5vw;
+}
+
+.cell-real{
+    background-color: "transparent";
+    font-size: 1.5vw;
+}
+
+table {
+  table-layout: fixed;
+}
+
+#dataset-image{
+    width: 100vw;
+}
+
+</style>
+
+</head>
+<body>
+  <center>
+  <table style="margin-top: auto; margin-bottom: auto;"border="0" cellspacing="0">
+       <tr>
+       <td class="result-cell">
+            <img class="result result-active" src="images/features/single/layer1_2_conv3.jpg" alt="layer1_2_conv3">
+            <div style="width: 80px;"><center>L1_2_C3</center></div>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/features/single/layer2_3_conv3.jpg" alt="layer2_3_conv3">
+            <div style="width: 80px;"><center>L2_3_C3</center></div>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/features/single/layer3_5_conv2.jpg" alt="layer3_5_conv2">
+            <div style="width: 80px;"><center>L3_5_C2</center></div>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/features/single/layer4_2_conv3.jpg" alt="layer4_2_conv3">
+            <div style="width: 80px;"><center>L4_2_C3</center></div>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell">
+            <img class="result" src="images/features/single/fc.jpg" alt="fc">
+            <div style="width: 80px;"><center>FC</center></div>
+       </td>
+       <td class="result-cell-spacing"></td>
+       <td class="result-cell-spacing"></td>
+    </table>
+    <div>
+        <p>Click the images above to see examples from each dataset</p>
+        <h3 id='dataset-text'>layer1_2_conv3</h3>
+        <img id='dataset-image' src="images/features/layer1_2_conv3.jpg" width="800px" style="float:none">
+    </div>
+
+    </center>
+
+
+</body>
+</html>

@@ -22,6 +22,20 @@ fortunate to work in the Image Processing Group under the supervision of
 <div><h1>Publications</h1></div>
 <div id="publications">
     <article>
+        <a classa="pub_image"><img src="files/publications/6_shaders21k/snapshot.png"></a>
+        <div class="pub_text">
+            <h3>Procedural Image Programs for Representation Learning</h3>
+            <h4 class="authors">
+                <b>Manel Baradad</b>, Chun-Fu (Richard) Chen, Jonas Wulff, Tongzhou Wang, Rogerio Feris, Antonio Torralba, Phillip Isola
+            </h4>
+            <p>NeurIPS 2022</p>
+            [<a href="">paper</a>]
+            [<a href="shaders21k">webpage</a>]
+            [<a href="https://github.com/mbaradad/shaders21k">code</a>]
+        </div>
+    </article>
+
+    <article>
         <a classa="pub_image"><img src="files/publications/5_noise_learning/snapshot.png"></a>
         <div class="pub_text">
             <h3>Learning to See by Looking at Noise</h3>
