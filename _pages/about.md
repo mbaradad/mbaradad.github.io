@@ -29,7 +29,7 @@ fortunate to work in the Image Processing Group under the supervision of
                 <b>Manel Baradad</b>, Chun-Fu (Richard) Chen, Jonas Wulff, Tongzhou Wang, Rogerio Feris, Antonio Torralba, Phillip Isola
             </h4>
             <p>NeurIPS 2022</p>
-            [<a href="https://openreview.net/pdf?id=wJwHTgIoE0P">paper</a>]
+            [<a href="https://arxiv.org/abs/2211.16412">paper</a>]
             [<a href="shaders21k">webpage</a>]
             [<a href="https://github.com/mbaradad/shaders21k">code</a>]
         </div>
