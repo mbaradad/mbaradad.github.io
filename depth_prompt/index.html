@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html><head lang="en"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Background Prompting for Improved Object Depth</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta property="og:image" content="img/refnerf_titlecard.jpg">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mbaradad.github.io/depth_prompt">
+    <meta property="og:title" content="Background Prompting for Improved Object Depth">
+    <meta property="og:description" content="Background prompting is a simple but yet effective strategy that adapts the input object image with a learned background to improve object depth. We learn the background prompts only using small scale synthetic object datasets. To infer object depth on a real image, we place the segmented object into the learned background prompt and run off-the-shelf depth networks. Background Prompting helps the depth networks focus on the foreground object, as they are made invariant to background variations. Moreover, Background Prompting minimizes the domain gap between synthetic and real object images, leading to better sim2real generalization than simple finetuning.">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Background Prompting for Improved Object Depth">
+    <meta name="twitter:description" content="Background prompting is a simple but yet effective strategy that adapts the input object image with a learned background to improve object depth. We learn the background prompts only using small scale synthetic object datasets. To infer object depth on a real image, we place the segmented object into the learned background prompt and run off-the-shelf depth networks. Background Prompting helps the depth networks focus on the foreground object, as they are made invariant to background variations. Moreover, Background Prompting minimizes the domain gap between synthetic and real object images, leading to better sim2real generalization than simple finetuning.">
+    <meta name="twitter:image" content="https://mbaradad.github.io/depth_prompt/img/titlecard.jpg">
+
+
+    <!-- mirror: F0%9F%AA%9E&lt -->
+    <link rel="icon" href="data:image/svg+xml,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22&gt;&lt;text y=%22.9em%22 font-size=%2290%22&gt;%E2%9C%A8&lt;/text&gt;&lt;/svg&gt;">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/codemirror.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/codemirror.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/video_comparison.js"></script>
+    <script src="js/app.js"></script>
+</head>
+
+<body>
+    <div class="container" id="header" style="text-align: center; margin: auto;">
+        <div class="row" id="title-row" style="max-width: 100%; margin: 0 auto; display: inline-block">
+            <h2 class="col-md-12 text-center" id="title">
+                <b>Background Prompting for Improved Object Depth</b><br>
+            </h2>
+        </div>
+
+        <div class="row" id="author-row" style="margin:0 auto;">
+            <div class="col-md-12 text-center" style="display: table; margin:0 auto">
+                <table class="author-table">
+                    <tr>
+                        <td>
+                            <a style="text-decoration:none" href="https://mbaradad.github.io">
+                              Manel Baradad
+                            </a><sup>1</sup>
+                        </td>
+                        <td>
+                            <a style="text-decoration:none" href="https://people.csail.mit.edu/yzli/">
+                                Yuanzhen Li
+                            </a><sup>2</sup>
+                        </td>
+                        <td>
+                            <a style="text-decoration:none" href="https://people.csail.mit.edu/fcole/">
+                                Forrester Cole
+                            </a><sup>2</sup>
+                            <br>
+                        </td>
+                        <td>
+                            <a style="text-decoration:none" href="http://people.csail.mit.edu/mrub/">
+                                Michael Rubinstein
+                            </a><sup>2</sup>
+                            <br>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-12 text-center" style="display: table; margin:0 auto">
+                <table class="author-table">
+                    <tr>
+                        <td>
+                            <a style="text-decoration:none" href="https://groups.csail.mit.edu/vision/torralbalab/">
+                                Antonio Torralba
+                            </a><sup>1</sup>
+                        </td>
+                        <td>
+                            <a style="text-decoration:none" href="https://billf.mit.edu/">
+                                William T. Freeman
+                            </a><sup>1,2</sup>
+                        </td>
+                        <td>
+                            <a style="text-decoration:none" href="https://varunjampani.github.io/">
+                                Varun Jampani
+                            </a><sup>2</sup>
+                            <br>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-md-12 text-center" style="display: table; margin:0 auto">
+                <table class="author-table">
+                    <tr>
+                        <td>
+                            <sup>1</sup>MIT <sup>2</sup>Google
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('author-row').style.maxWidth = document.getElementById("title-row").clientWidth + 'px';
+    </script>
+    <div class="container" id="main">
+        <div class="row">
+                <div class="col-sm-6 col-sm-offset-3 text-center">
+                    <ul class="nav nav-pills nav-justified">
+                        <li>
+                            <a href="https://arxiv.org/abs/2112.03907">
+                            <img src="./img/paper_image.jpg" height="60px">
+                                <h4><strong>Paper</strong></h4>
+                            </a>
+                        </li>
+
+                        <!--
+                        <li>
+                            <a href="https://youtu.be/qrdRH9irAlk">
+                            <img src="./img/youtube_icon.png" height="60px">
+                                <h4><strong>Video</strong></h4>
+                            </a>
+                        </li>
+                        -->
+
+                        <li>
+                            <a href="https://github.com/google-research/multinerf" target="_blank">
+                            <img src="img/github.png" height="60px">
+                                <h4><strong>Code</strong></h4>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div>
+                    <video class="video" loop playsinline autoPlay muted src="video/gif_teaser_cropped.mp4"></video>
+                </div>
+			</div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Abstract
+                </h3>
+                <p class="text-justify">
+                    Estimating the depth of objects from a single image is a valuable task for many vision, robotics, and graphics applications.
+                    However, current methods often fail to produce accurate depth for objects in diverse scenes.
+                    In this work, we propose a simple yet effective Background Prompting strategy that adapts the input object image with a learned background.
+                    We learn the background prompts only using small scale synthetic object datasets. To infer object depth on a real image,
+                    we place the segmented object into the learned background prompt and run off-the-shelf depth networks. Background Prompting
+                    helps the depth networks focus on the foreground object, as they are made invariant to background variations.
+                    Moreover, Background Prompting minimizes the domain gap between synthetic and real object images, leading to better sim2real
+                    generalization than simple finetuning. Results on multiple synthetic and real datasets demonstrate consistent improvements in real object depths for a variety of existing depth networks.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Method overview
+                </h3>
+                <div class="text-center">
+                    <image src="img/method_overview.png" class="img-responsive" alt="overview" width="100%" style="max-height: 450px;margin:auto;"></image>
+                </div>
+                <br>
+                <div class="text-justify">
+                    We learn the background prompts using a small dataset of synthetic objects (Amazon Berkeley Objects), which we render using the default hyperparameters found in the original ABO dataset and HM3D-ABO.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Example results
+                </h3>
+                <table>
+                    <tr>
+                        <td>
+                                <!-- id on video has to match id on canvas followed by Merge-->
+                                <video class="video" id="ex0" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000001.mp4" onplay="resizeAndPlay(this)"></video>
+                                <canvas height=0 class="videoMerge" id="ex0Merge"></canvas>
+                        </td>
+                        <td>
+                                <!-- id on video has to match id on canvas followed by Merge-->
+                                <video class="video" id="ex1" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000000.mp4" onplay="resizeAndPlay(this)"></video>
+                                <canvas height=0 class="videoMerge" id="ex1Merge"></canvas>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                                <!-- id on video has to match id on canvas followed by Merge-->
+                                <video class="video" id="ex2" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000002.mp4" onplay="resizeAndPlay(this)"></video>
+                                <canvas height=0 class="videoMerge" id="ex2Merge"></canvas>
+                        </td>
+                        <td>
+                            <!-- id on video has to match id on canvas followed by Merge-->
+                            <video class="video" id="ex3" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000006.mp4" onplay="resizeAndPlay(this)"></video>
+                            <canvas height=0 class="videoMerge" id="ex3Merge"></canvas>
+                        </td>
+                        </tr>
+                        <tr>
+                        <td>
+                            <!-- id on video has to match id on canvas followed by Merge-->
+                            <video class="video" id="ex4" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000003.mp4" onplay="resizeAndPlay(this)"></video>
+                            <canvas height=0 class="videoMerge" id="ex4Merge"></canvas>
+                        </td>
+                        <td>
+                            <!-- id on video has to match id on canvas followed by Merge-->
+                            <video class="video" id="ex5" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000004.mp4" onplay="resizeAndPlay(this)"></video>
+                            <canvas height=0 class="videoMerge" id="ex5Merge"></canvas>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <h3>
+                            <a href="extra_results.html">Extra results</a>
+                        </h3>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Background Parameterization
+                </h3>
+                <br>
+                <div class="text-center">
+                    <img src="./img/initializations.png" width="100%">
+                </div>
+                <br>
+                <div class="text-justify">
+                    We propose parameterizing the prompts in Fourier Space instead of . As pointed out in previous works, this parameterization creates
+                    different basins of attraction than pixel space paramterization, which results in better generalization. After training, samples
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    In-distribution and Out-of-distribution performance
+                </h3>
+                <br>
+                <div class="text-center">
+                    <img src="./img/in_distribution.png" width="49%">
+                    <img src="./img/ood.png" width="49%">
+                </div>
+                <br>
+                <div class="text-justify">
+                    The tables show in-distribution (validation set of ABO and HM3D) and out-of-distribution (samples from datasets) performance.
+                    Our prompting strategy achieves strong performance compared to the default off-the-shelf models, by only modifying the input pixels.
+                    Furthermore our background prompting strategy achieves good results compared to finetuning, which requires modifying all the parameters of the network.
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Inferred Backgrounds
+                </h3>
+                <br>
+                <div class="text-center">
+                    <img src="./img/table_in_distribution.png" width="50%">
+                    <img src="./img/table_ood.png" width="50%">
+
+                </div>
+                <br>
+                <div class="text-justify">
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Citation
+                </h3>
+                <div class="form-group col-md-10 col-md-offset-1">
+                    <textarea id="bibtex" class="form-control" readonly>
+                    @article{baradad2023depthbackgroundprompt,
+                        TODO: add bibtex
+                    }
+                    </textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h3>
+                    Acknowledgements
+                </h3>
+                The website template was borrowed from <a href="https://dorverbin.github.io/refnerf">RefNerf</a>.
+                </p>
+            </div>
+        </div>
+
+</body>
+</html>
