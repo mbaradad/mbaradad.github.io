@@ -325,3 +325,15 @@
 .fa.fa-pull-right {
   margin-left: .3em;
 }
+
+/* Our CSS */
+
+.papertitle {
+  margin: 0 0 0 0;
+}
+.pub {
+    margin-bottom: 2em;
+}
+.conference {
+  margin: 0 0 0 0 !important;
+}
