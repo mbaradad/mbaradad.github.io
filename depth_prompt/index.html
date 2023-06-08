@@ -116,7 +116,7 @@
                 <div class="col-sm-6 col-sm-offset-3 text-center">
                     <ul class="nav nav-pills nav-justified">
                         <li>
-                            <a href="https://arxiv.org/abs/2112.03907">
+                            <a href="https://arxiv.org/abs/TOADD">
                             <img src="./img/paper_image.jpg" height="60px">
                                 <h4><strong>Paper</strong></h4>
                             </a>
@@ -132,7 +132,7 @@
                         -->
 
                         <li>
-                            <a href="https://github.com/google-research/multinerf" target="_blank">
+                            <a href="https://github.com/mbaradad/depth_prompt" target="_blank">
                             <img src="img/github.png" height="60px">
                                 <h4><strong>Code</strong></h4>
                             </a>
@@ -195,43 +195,43 @@
                     <tr>
                         <td>
                                 <!-- id on video has to match id on canvas followed by Merge-->
-                                <video class="video" id="ex0" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000001.mp4" onplay="resizeAndPlay(this)"></video>
+                                <video class="video" id="ex0" loop playsinline autoPlay muted src="video/examples/000_dpt_hypernet_fft_hm3-abo_hm3-abo_000000.mp4" onplay="resizeAndPlay(this)"></video>
                                 <canvas height=0 class="videoMerge" id="ex0Merge"></canvas>
                         </td>
                         <td>
                                 <!-- id on video has to match id on canvas followed by Merge-->
-                                <video class="video" id="ex1" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000000.mp4" onplay="resizeAndPlay(this)"></video>
+                                <video class="video" id="ex1" loop playsinline autoPlay muted src="video/examples/001_dpt_hypernet_fft_hm3-abo_hm3-abo_000003.mp4" onplay="resizeAndPlay(this)"></video>
                                 <canvas height=0 class="videoMerge" id="ex1Merge"></canvas>
                         </td>
                         </tr>
                         <tr>
                         <td>
                                 <!-- id on video has to match id on canvas followed by Merge-->
-                                <video class="video" id="ex2" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000002.mp4" onplay="resizeAndPlay(this)"></video>
+                                <video class="video" id="ex2" loop playsinline autoPlay muted src="video/examples/002_dpt_single_background_fft_hndr_hndr_000005.mp4" onplay="resizeAndPlay(this)"></video>
                                 <canvas height=0 class="videoMerge" id="ex2Merge"></canvas>
                         </td>
                         <td>
                             <!-- id on video has to match id on canvas followed by Merge-->
-                            <video class="video" id="ex3" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000006.mp4" onplay="resizeAndPlay(this)"></video>
+                            <video class="video" id="ex3" loop playsinline autoPlay muted src="video/examples/003_dpt_single_background_fft_hndr_hndr_000007.mp4" onplay="resizeAndPlay(this)"></video>
                             <canvas height=0 class="videoMerge" id="ex3Merge"></canvas>
                         </td>
                         </tr>
                         <tr>
                         <td>
                             <!-- id on video has to match id on canvas followed by Merge-->
-                            <video class="video" id="ex4" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000003.mp4" onplay="resizeAndPlay(this)"></video>
+                            <video class="video" id="ex4" loop playsinline autoPlay muted src="video/examples/004_leres_resnet50_hypernet_fft_hm3-abo_hm3-abo_000002.mp4" onplay="resizeAndPlay(this)"></video>
                             <canvas height=0 class="videoMerge" id="ex4Merge"></canvas>
                         </td>
                         <td>
                             <!-- id on video has to match id on canvas followed by Merge-->
-                            <video class="video" id="ex5" loop playsinline autoPlay muted src="video/examples/single_background_fft_hndr_hndr_000004.mp4" onplay="resizeAndPlay(this)"></video>
+                            <video class="video" id="ex5" loop playsinline autoPlay muted src="video/examples/005_leres_resnet50_hypernet_fft_hndr_hndr_000002.mp4" onplay="resizeAndPlay(this)"></video>
                             <canvas height=0 class="videoMerge" id="ex5Merge"></canvas>
                         </td>
                     </tr>
                     <tr>
                         <td>
                         <h3>
-                            <a href="extra_results.html">Extra results</a>
+                            <a href="additional_results.html">Additional results</a>
                         </h3>
                         </td>
                     </tr>
@@ -250,8 +250,8 @@
                 </div>
                 <br>
                 <div class="text-justify">
-                    We propose parameterizing the prompts in Fourier Space instead of . As pointed out in previous works, this parameterization creates
-                    different basins of attraction than pixel space paramterization, which results in better generalization. After training, samples
+                    We propose parameterizing the prompts in Fourier Space instead of pixel space. As pointed out in previous works, this parameterization creates
+                    different basins of attraction than pixel space paramterization, which results in better generalization.
                 </div>
             </div>
         </div>
@@ -268,7 +268,7 @@
                 </div>
                 <br>
                 <div class="text-justify">
-                    The tables show in-distribution (validation set of ABO and HM3D) and out-of-distribution (samples from datasets) performance.
+                    Tables 1 and 2 show in-distribution (validation set of ABO and HM3D) and out-of-distribution (samples from datasets) performance, respectively.
                     Our prompting strategy achieves strong performance compared to the default off-the-shelf models, by only modifying the input pixels.
                     Furthermore our background prompting strategy achieves good results compared to finetuning, which requires modifying all the parameters of the network.
                 </div>
@@ -282,17 +282,16 @@
                 </h3>
                 <br>
                 <div class="text-center">
-                    <img src="./img/table_in_distribution.png" width="50%">
-                    <img src="./img/table_ood.png" width="50%">
+                    <img src="./img/inferred_backgrounds.png" width="100%">
 
                 </div>
                 <br>
                 <div class="text-justify">
-
+                    When feeding only the background prompts to the networks (without the foreground object being inpainted), the network infers depths that are similar across networks.
+                    When the backgrounds are produced by conditioning on semantic masks (PNet), the inferred depths are similar to a box that follows the Manhattan grid orientation of the masks.
                 </div>
             </div>
         </div>
-
 
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -314,7 +313,7 @@
                 <h3>
                     Acknowledgements
                 </h3>
-                The website template was borrowed from <a href="https://dorverbin.github.io/refnerf">RefNerf</a>.
+                The  template for this website was borrowed from <a href="https://nerfies.github.io">Nerfies</a>. We thank the authors for opensourcing it.
                 </p>
             </div>
         </div>
