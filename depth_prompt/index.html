@@ -212,7 +212,7 @@
                         </td>
                         <td>
                             <!-- id on video has to match id on canvas followed by Merge-->
-                            <video class="video" id="ex3" loop playsinline autoPlay muted src="video/examples/003_dpt_single_background_fft_hndr_hndr_000007.mp4" onplay="resizeAndPlay(this)"></video>
+                            <video class="video" id="ex3" loop playsinline autoPlay muted src="video/examples/003_dpt_single_background_fft_abo_abo_000004.mp4" onplay="resizeAndPlay(this)"></video>
                             <canvas height=0 class="videoMerge" id="ex3Merge"></canvas>
                         </td>
                         </tr>
@@ -230,93 +230,95 @@
                     </tr>
                     <tr>
                         <td>
-                        <h3>
-                            <a href="additional_results.html">Additional results</a>
-                        </h3>
-                        </td>
-                    </tr>
-                </table>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Background Parameterization
-                </h3>
-                <br>
-                <div class="text-center">
-                    <img src="./img/initializations.png" width="100%">
-                </div>
-                <br>
-                <div class="text-justify">
-                    We propose parameterizing the prompts in Fourier Space instead of pixel space. As pointed out in previous works, this parameterization creates
-                    different basins of attraction than pixel space paramterization, which results in better generalization.
+                            <!--
+                                <h3>
+                                <a href="additional_results.html">Additional results</a>
+                            </h3>
+                            -->
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    In-distribution and Out-of-distribution performance
-                </h3>
-                <br>
-                <div class="text-center">
-                    <img src="./img/in_distribution.png" width="49%">
-                    <img src="./img/ood.png" width="49%">
-                </div>
-                <br>
-                <div class="text-justify">
-                    Tables 1 and 2 show in-distribution (validation set of ABO and HM3D) and out-of-distribution (samples from datasets) performance, respectively.
-                    Our prompting strategy achieves strong performance compared to the default off-the-shelf models, by only modifying the input pixels.
-                    Furthermore our background prompting strategy achieves good results compared to finetuning, which requires modifying all the parameters of the network.
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>
+                        Background Parameterization
+                    </h3>
+                    <br>
+                    <div class="text-center">
+                        <img src="./img/initializations.png" width="100%">
+                    </div>
+                    <br>
+                    <div class="text-justify">
+                        We propose parameterizing the prompts in Fourier Space instead of pixel space. As pointed out in previous works, this parameterization creates
+                        different basins of attraction than pixel space paramterization, which results in better generalization.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Inferred Backgrounds
-                </h3>
-                <br>
-                <div class="text-center">
-                    <img src="./img/inferred_backgrounds.png" width="100%">
-
-                </div>
-                <br>
-                <div class="text-justify">
-                    When feeding only the background prompts to the networks (without the foreground object being inpainted), the network infers depths that are similar across networks.
-                    When the backgrounds are produced by conditioning on semantic masks (PNet), the inferred depths are similar to a box that follows the Manhattan grid orientation of the masks.
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Citation
-                </h3>
-                <div class="form-group col-md-10 col-md-offset-1">
-                    <textarea id="bibtex" class="form-control" readonly>
-                    @article{baradad2023depthbackgroundprompt,
-                        TODO: add bibtex
-                    }
-                    </textarea>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>
+                        In-distribution and Out-of-distribution performance
+                    </h3>
+                    <br>
+                    <div class="text-center">
+                        <img src="./img/in_distribution.png" width="49%">
+                        <img src="./img/ood.png" width="49%">
+                    </div>
+                    <br>
+                    <div class="text-justify">
+                        Tables 1 and 2 show in-distribution (validation set of ABO and HM3D) and out-of-distribution (samples from datasets) performance, respectively.
+                        Our prompting strategy achieves strong performance compared to the default off-the-shelf models, by only modifying the input pixels.
+                        Furthermore our background prompting strategy achieves good results compared to finetuning, which requires modifying all the parameters of the network.
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h3>
-                    Acknowledgements
-                </h3>
-                The  template for this website was borrowed from <a href="https://nerfies.github.io">Nerfies</a>. We thank the authors for opensourcing it.
-                </p>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>
+                        Inferred Backgrounds
+                    </h3>
+                    <br>
+                    <div class="text-center">
+                        <img src="./img/inferred_backgrounds.png" width="100%">
+
+                    </div>
+                    <br>
+                    <div class="text-justify">
+                        When feeding only the background prompts to the networks (without the foreground object being inpainted), the network infers depths that are similar across networks.
+                        When the backgrounds are produced by conditioning on semantic masks (PNet), the inferred depths are similar to a box that follows the Manhattan grid orientation of the masks.
+                    </div>
+                </div>
             </div>
-        </div>
 
-</body>
-</html>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>
+                        Citation
+                    </h3>
+                    <div class="form-group col-md-10 col-md-offset-1">
+                        <textarea id="bibtex" class="form-control" readonly>
+                        @article{baradad2023depthbackgroundprompt,
+                            TODO: add bibtex
+                        }
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h3>
+                        Acknowledgements
+                    </h3>
+                    The  template for this website was borrowed from <a href="https://nerfies.github.io">Nerfies</a>. We thank the authors for opensourcing it.
+                    </p>
+                </div>
+            </div>
+
+    </body>
+    </html>
