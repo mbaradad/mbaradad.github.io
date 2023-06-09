@@ -28,7 +28,7 @@ fortunate to work in the Image Processing Group under the supervision of
             <h4 class="authors">
                 <b>Manel Baradad</b>, Yuanzhen Li, Forrester Cole, Michael Rubinstein, Antonio Torralba, William T. Freeman, Varun Jampani
             </h4>
-            <p class="conference">arxiv</p>
+            <p class="conference">arxiv 2023</p>
             [<a href="https://arxiv.org/abs/2306.05428">paper</a>]
             [<a href="depth_prompt">webpage</a>]
             [<a href="https://github.com/mbaradad/depth_prompt">code</a>]
