@@ -10,12 +10,16 @@ redirect_from:
 
 <div class="intro">
 <p align="justify">
-I am Manel Baradad Jurjo, 5th year PhD student at MIT under the supervision of 
+I am Manel Baradad Jurjo, 6th year PhD student at MIT under the supervision of 
 <a href="http://web.mit.edu/torralba/www/">Prof. Antonio Torralba</a>.
 I currently work in representation learning and 3D scene understanding, but I am also interested in computational photography and graphics.
 Before coming to MIT, I did my undergrad at <a href="https://cfis.upc.edu/en">CFIS-UPC</a>, where I was 
 fortunate to work in the Image Processing Group under the supervision of 
 <a href="https://imatge.upc.edu/web/people/xavier-giro">Prof. Xavier Giró-i-Nieto</a>.
+
+<br><br>
+<b>I'm looking for full-time industry opportunities starting June-September 2024.</b> You can contact me at: mbaradad at mit dot edu.
+
 </p>
 </div>
 
