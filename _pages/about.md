@@ -26,6 +26,35 @@ fortunate to work in the Image Processing Group under the supervision of
 <div><h1>Publications</h1></div>
 <div id="publications">
     <article class="pub">
+        <a classa="pub_image"><img src="files/publications/10_vision_checkup/vision_checkup.png"></a>
+        <div class="pub_text">
+            <h3 class="papertitle">A Vision Check-up for Language Models</h3>
+            <h4 class="authors">
+                 Pratyusha Sharma*, Tamar Rott Shaham*, <b>Manel Baradad</b>, Stephanie Fu, Adrián Rodríguez-Muñoz, Shivam Duggal, Phillip Isola, Antonio Torralba 
+            </h4>
+            <p class="conference">arxiv 2024</p>
+            [<a href="https://arxiv.org/abs/2401.01862">paper</a>]
+            [<a href="https://vision-checkup.csail.mit.edu">webpage</a>]
+        </div>
+    </article>
+
+    <article class="pub">
+        <a classa="pub_image"><img src="files/publications/9_deep_augment/deep_augment.png"></a>
+        <div class="pub_text">
+            <h3 class="papertitle">Deep Augmentation: Enhancing Self-Supervised Learning through Transformations in Higher Activation Space</h3>
+            <h4 class="authors">
+                 Rickard Brüel-Gabrielsson, Tongzhou Wang, <b>Manel Baradad</b>, Justin Solomon
+            </h4>
+            <p class="conference">arxiv 2023</p>
+            [<a href="https://arxiv.org/abs/2303.14537">paper</a>]
+        </div>
+    </article>
+
+
+
+
+
+    <article class="pub">
         <a classa="pub_image"><img src="files/publications/8_depth_prompt/gif_depth_prompt.gif"></a>
         <div class="pub_text">
             <h3 class="papertitle">Background Prompting for Improved Object Depth 	</h3>
