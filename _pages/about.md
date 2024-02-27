@@ -32,7 +32,7 @@ fortunate to work in the Image Processing Group under the supervision of
             <h4 class="authors">
                  Pratyusha Sharma*, Tamar Rott Shaham*, <b>Manel Baradad</b>, Stephanie Fu, Adrián Rodríguez-Muñoz, Shivam Duggal, Phillip Isola, Antonio Torralba 
             </h4>
-            <p class="conference">arxiv 2024</p>
+            <p class="conference">CVPR 2024</p>
             [<a href="https://arxiv.org/abs/2401.01862">paper</a>]
             [<a href="https://vision-checkup.csail.mit.edu">webpage</a>]
         </div>
