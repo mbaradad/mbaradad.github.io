@@ -635,69 +635,68 @@
 <section class="section" style="padding-top: 0;">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered">Quantitative Results & User Studies</h2>
-    <div class="columns is-centered" style="align-items: flex-start;">
+    <div class="columns is-centered" style="align-items: flex-start; flex-wrap: nowrap;">
       <!-- Quantitative Results: 50% -->
-      <div class="column" style="flex: 0 0 50%; max-width: 50%;">
-        <div class="content">
-            <table class="comparison-table">
-              <thead>
-                <tr>
-                  <th style="text-align: left;">Method</th>
-                  <th>CLIP-I &uarr;</th>
-                  <th>DINO &uarr;</th>
-                  <th>CLIP-T &uarr;</th>
-                  <th>MSE-BG &darr;</th>
-                  <th>Chamfer &darr;</th>
-                  <th>Missing &darr;</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="section-header"><td colspan="7">Multi-Subject Guided Image Generation</td></tr>
-                <tr>
-                  <td class="method-name">UNO</td>
-                  <td>0.696</td><td>0.450</td><td>0.346</td><td>0.062</td><td>14.733</td><td>0.099</td>
-                </tr>
-                <tr>
-                  <td class="method-name">DSD</td>
-                  <td>0.650</td><td>0.362</td><td>0.347</td><td>0.083</td><td>11.886</td><td>0.102</td>
-                </tr>
-                <tr>
-                  <td class="method-name">OmniGen</td>
-                  <td>0.724</td><td>0.478</td><td>0.337</td><td>0.119</td><td>15.120</td><td>0.128</td>
-                </tr>
-                <tr>
-                  <td class="method-name">MS-Diffusion</td>
-                  <td>0.574</td><td>0.245</td><td>0.314</td><td>0.166</td><td>16.322</td><td>0.071</td>
-                </tr>
-                <tr class="section-header"><td colspan="7">Image and Video Editing Models</td></tr>
-                <tr>
-                  <td class="method-name">VACE</td>
-                  <td>0.689</td><td>0.439</td><td>0.343</td><td>0.096</td><td>9.948</td><td>0.096</td>
-                </tr>
-                <tr>
-                  <td class="method-name">NanoBanana</td>
-                  <td>0.662</td><td>0.390</td><td>0.344</td><td>0.029</td><td>13.146</td><td>0.138</td>
-                </tr>
-                <tr>
-                  <td class="method-name">Qwen</td>
-                  <td>0.625</td><td>0.308</td><td>0.317</td><td>0.097</td><td>49.317</td><td>0.115</td>
-                </tr>
-                <tr class="ours">
-                  <td class="method-name">Ours (PLACID)</td>
-                  <td class="best">0.705</td><td class="best">0.440</td><td>0.336</td>
-                  <td class="best">0.019</td><td class="best">4.641</td><td class="best">0.044</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <p class="has-text-justified" style="margin-top: 0.75rem; font-size: 0.82rem; color: #555;">
-            Metrics: Missing (% objects missing), CLIP-I/DINO (identity preservation),
-            CLIP-T (text alignment), Chamfer (background color fidelity), MSE-BG (background faithfulness).
-          </p>
+      <div class="column" style="flex: 0 0 50%; max-width: 50%; min-width: 0; box-sizing: border-box;">
+        <div class="content" style="overflow-x: auto;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Method</th>
+                <th>CLIP-I &uarr;</th>
+                <th>DINO &uarr;</th>
+                <th>CLIP-T &uarr;</th>
+                <th>MSE-BG &darr;</th>
+                <th>Chamfer &darr;</th>
+                <th>Missing &darr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="section-header"><td colspan="7">Multi-Subject Guided Image Generation</td></tr>
+              <tr>
+                <td class="method-name">UNO</td>
+                <td>0.696</td><td>0.450</td><td>0.346</td><td>0.062</td><td>14.733</td><td>0.099</td>
+              </tr>
+              <tr>
+                <td class="method-name">DSD</td>
+                <td>0.650</td><td>0.362</td><td>0.347</td><td>0.083</td><td>11.886</td><td>0.102</td>
+              </tr>
+              <tr>
+                <td class="method-name">OmniGen</td>
+                <td>0.724</td><td>0.478</td><td>0.337</td><td>0.119</td><td>15.120</td><td>0.128</td>
+              </tr>
+              <tr>
+                <td class="method-name">MS-Diffusion</td>
+                <td>0.574</td><td>0.245</td><td>0.314</td><td>0.166</td><td>16.322</td><td>0.071</td>
+              </tr>
+              <tr class="section-header"><td colspan="7">Image and Video Editing Models</td></tr>
+              <tr>
+                <td class="method-name">VACE</td>
+                <td>0.689</td><td>0.439</td><td>0.343</td><td>0.096</td><td>9.948</td><td>0.096</td>
+              </tr>
+              <tr>
+                <td class="method-name">NanoBanana</td>
+                <td>0.662</td><td>0.390</td><td>0.344</td><td>0.029</td><td>13.146</td><td>0.138</td>
+              </tr>
+              <tr>
+                <td class="method-name">Qwen</td>
+                <td>0.625</td><td>0.308</td><td>0.317</td><td>0.097</td><td>49.317</td><td>0.115</td>
+              </tr>
+              <tr class="ours">
+                <td class="method-name">Ours (PLACID)</td>
+                <td class="best">0.705</td><td class="best">0.440</td><td>0.336</td>
+                <td class="best">0.019</td><td class="best">4.641</td><td class="best">0.044</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+        <p class="has-text-justified" style="margin-top: 0.75rem; font-size: 0.82rem; color: #555;">
+          Metrics: Missing (% objects missing), CLIP-I/DINO (identity preservation),
+          CLIP-T (text alignment), Chamfer (background color fidelity), MSE-BG (background faithfulness).
+        </p>
       </div>
       <!-- User Studies: 50% -->
-      <div class="column" style="flex: 0 0 50%; max-width: 50%;">
+      <div class="column" style="flex: 0 0 50%; max-width: 50%; min-width: 0; box-sizing: border-box;">
         <img src="static/images/placid_userstudy.png" alt="User study results" style="width: 100%; border-radius: 6px;">
         <p class="has-text-justified" style="margin-top: 0.75rem; font-size: 0.82rem; color: #555;">
           User studies with 1265 side-by-side comparisons by eight external users,
