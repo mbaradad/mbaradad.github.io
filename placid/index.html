@@ -171,6 +171,14 @@
       object-fit: contain;
       background: #fff;
       display: inline-block;
+      transition: transform 0.25s ease, z-index 0s;
+      cursor: pointer;
+      position: relative;
+    }
+    .example-tile .tile-objects img:hover {
+      transform: scale(9);
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     }
     .example-tile .tile-bg {
       width: 100%;
@@ -180,11 +188,18 @@
     .example-tile .tile-bg img {
       height: 40px;
       width: auto;
-      max-width: 100%;
       border-radius: 4px;
       border: 2px solid #b5d4f0;
-      object-fit: cover;
+      object-fit: contain;
       display: inline-block;
+      transition: transform 0.25s ease, z-index 0s;
+      cursor: pointer;
+      position: relative;
+    }
+    .example-tile .tile-bg img:hover {
+      transform: scale(9);
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     }
     .example-tile .tile-arrow {
       font-size: 0.85rem;
@@ -210,6 +225,8 @@
     }
     .video-grid video {
       width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
       border-radius: 6px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.1);
     }
@@ -517,13 +534,22 @@
             <source src="static/videos/test_2_0_1065640400.mp4" type="video/mp4">
           </video>
           <video autoplay loop muted playsinline>
+            <source src="static/videos/test_5_0_2764686921.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted playsinline>
             <source src="static/videos/test_1_0_1150295423.mp4" type="video/mp4">
           </video>
           <video autoplay loop muted playsinline>
             <source src="static/videos/test_11_0_2521346317.mp4" type="video/mp4">
           </video>
           <video autoplay loop muted playsinline>
+            <source src="static/videos/test_9_0_3488308497.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted playsinline>
             <source src="static/videos/test_6_0_2152621784.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted playsinline>
+            <source src="static/videos/test_3_0_2435251980.mp4" type="video/mp4">
           </video>
           <video autoplay loop muted playsinline>
             <source src="static/videos/test_8_0_1080565479.mp4" type="video/mp4">
