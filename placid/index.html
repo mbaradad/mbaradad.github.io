@@ -79,11 +79,11 @@
     .comparison-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.85rem;
+      font-size: 0.72rem;
     }
     .comparison-table th,
     .comparison-table td {
-      padding: 6px 10px;
+      padding: 4px 5px;
       text-align: center;
       border-bottom: 1px solid #eee;
     }
@@ -114,16 +114,93 @@
     .comparison-table tr.ours td {
       font-weight: 600;
     }
-    .results-grid {
+    /* Example tiles: 3-column grid */
+    .examples-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 16px;
       margin-bottom: 1.5rem;
     }
-    .results-grid img {
+    @media (max-width: 768px) {
+      .examples-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .examples-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .example-tile {
+      background: #fafafa;
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.2s;
+    }
+    .example-tile:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .example-tile .tile-section-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #aaa;
+      margin-bottom: 4px;
+      width: 100%;
+      text-align: left;
+    }
+    .example-tile .tile-objects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 2px;
+    }
+    .example-tile .tile-objects img {
+      height: 44px;
+      width: auto;
+      max-width: 100%;
+      border-radius: 4px;
+      border: 1px solid #e4e4e4;
+      object-fit: contain;
+      background: #fff;
+      display: inline-block;
+    }
+    .example-tile .tile-bg {
+      width: 100%;
+      margin-bottom: 2px;
+      text-align: left;
+    }
+    .example-tile .tile-bg img {
+      height: 40px;
+      width: auto;
+      max-width: 100%;
+      border-radius: 4px;
+      border: 2px solid #b5d4f0;
+      object-fit: cover;
+      display: inline-block;
+    }
+    .example-tile .tile-arrow {
+      font-size: 0.85rem;
+      color: #bbb;
+      margin: 3px 0;
+    }
+    .example-tile .tile-output img {
       width: 100%;
       border-radius: 6px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .example-tile .tile-caption {
+      font-size: 0.72rem;
+      color: #999;
+      margin-top: 6px;
+      text-align: center;
     }
     .video-grid {
       display: grid;
@@ -135,6 +212,24 @@
       width: 100%;
       border-radius: 6px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    /* Training data video grid */
+    .traindata-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 1rem;
+    }
+    .traindata-video-grid video {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .traindata-video-grid .td-video-label {
+      font-size: 0.8rem;
+      color: #777;
+      text-align: center;
+      margin-top: 4px;
     }
   </style>
 </head>
@@ -257,31 +352,160 @@
 <!-- Example Results -->
 <section class="section" style="padding-top: 0;">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
+    <div class="columns is-centered">
       <div class="column">
-        <h2 class="title is-3">Example Results</h2>
+        <h2 class="title is-3 has-text-centered">Example Results</h2>
         <div class="content has-text-justified">
           <p>
-            Curated results from PLACID on our evaluation set, spanning 1 to 5 objects
-            with both plain-color and photorealistic backgrounds.
+            Given a set of object images, an optional background, and a text caption, PLACID produces
+            a coherent multi-object composite. Below we show inputs (object photos + background) and the
+            corresponding outputs on our evaluation set.
           </p>
         </div>
-        <div class="results-grid">
-          <img src="static/images/examples/7_1.png" alt="1 object: watch on yellow backdrop">
-          <img src="static/images/examples/2_1.png" alt="2 objects: rings on purple backdrop">
-          <img src="static/images/examples/5_1.png" alt="2 objects: ceramics and vase">
-          <img src="static/images/examples/1_1.png" alt="3 objects: duck, truck, robot on purple">
-          <img src="static/images/examples/9_1.png" alt="3 objects: scarf, necklace, and accessories">
-          <img src="static/images/examples/3_1.png" alt="4 objects: armchairs, table, lamp on yellow">
-          <img src="static/images/examples/8_1.png" alt="5 objects: food items on table">
-          <img src="static/images/examples/11.png" alt="Objects composited on background">
-          <img src="static/images/examples/22.png" alt="Objects composited on background">
+
+        <div class="examples-grid">
+
+          <!-- 1 object: watch -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/12.jpg" alt="watch">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg2.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/7_1.png" alt="result: watch on yellow backdrop"></div>
+            <div class="tile-caption">1 object</div>
+          </div>
+
+          <!-- 2 objects: rings -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/1abfbe4f.jpg" alt="ring 1">
+              <img src="static/images/inputs/1c9f948a.jpg" alt="ring 2">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg5.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/2_1.png" alt="result: rings on purple backdrop"></div>
+            <div class="tile-caption">2 objects</div>
+          </div>
+
+          <!-- 2 objects: ceramics -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/36.jpg" alt="ceramics">
+              <img src="static/images/inputs/0a2efe1f.jpg" alt="vase">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg7.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/5_1.png" alt="result: ceramics and vase"></div>
+            <div class="tile-caption">2 objects</div>
+          </div>
+
+          <!-- 3 objects: duck, truck, robot -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/50.jpg" alt="duck">
+              <img src="static/images/inputs/0bbf3d2f.jpg" alt="truck">
+              <img src="static/images/inputs/18.jpg" alt="robot">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg40.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/1_1.png" alt="result: duck, truck, robot"></div>
+            <div class="tile-caption">3 objects</div>
+          </div>
+
+          <!-- 3 objects: chair, table, vase -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/1bd2c385.jpg" alt="orange chair">
+              <img src="static/images/inputs/0faf08e4.jpg" alt="wooden table">
+              <img src="static/images/inputs/0eff2fa0.jpg" alt="multicolored vase">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg42.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/11_1.png" alt="result: chair, table, vase"></div>
+            <div class="tile-caption">3 objects</div>
+          </div>
+
+          <!-- 3 objects: accessories -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/0ca1a4ab.jpg" alt="scarf">
+              <img src="static/images/inputs/00fca538.jpg" alt="necklace">
+              <img src="static/images/inputs/1a8f660b.jpg" alt="bracelet">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg26.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/9_1.png" alt="result: scarf, necklace, accessories"></div>
+            <div class="tile-caption">3 objects</div>
+          </div>
+
+          <!-- 4 objects: teddy bear, rubik's cube, etc -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/13.jpg" alt="teddy bear">
+              <img src="static/images/inputs/20.jpg" alt="rubik's cube">
+              <img src="static/images/inputs/31.jpg" alt="toy">
+              <img src="static/images/inputs/34.jpg" alt="toy">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg48.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/6_1.png" alt="result: teddy bear and toys"></div>
+            <div class="tile-caption">4 objects</div>
+          </div>
+
+          <!-- 4 objects: furniture -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/0a1e57ec.jpg" alt="plaid chair">
+              <img src="static/images/inputs/0c0cc953.jpg" alt="blue chair">
+              <img src="static/images/inputs/1b99e8aa.jpg" alt="table">
+              <img src="static/images/inputs/0a2f9964.jpg" alt="lamp">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg43.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/3_1.png" alt="result: armchairs, table, lamp"></div>
+            <div class="tile-caption">4 objects</div>
+          </div>
+
+          <!-- 5 objects: food -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/1e60f202.jpg" alt="wine">
+              <img src="static/images/inputs/1df7d7e9.jpg" alt="salad">
+              <img src="static/images/inputs/8ac8a148.jpg" alt="sauce">
+              <img src="static/images/inputs/0adf522f.jpg" alt="watermelon">
+              <img src="static/images/inputs/0b6e1c5a.jpg" alt="plate">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg51.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/8_1.png" alt="result: food items on table"></div>
+            <div class="tile-caption">5 objects</div>
+          </div>
+
         </div>
 
-        <h3 class="title is-4" style="margin-top: 1.5rem;">Video Outputs</h3>
+        <h3 class="title is-4 has-text-centered" style="margin-top: 1.5rem;">Video Outputs</h3>
         <div class="content has-text-justified">
           <p>
-            PLACID generates videos where objects transition from random positions to coherent layouts.
+            PLACID generates videos where objects transition from random initial positions to coherent layouts.
             The final frame serves as the composite image.
           </p>
         </div>
@@ -293,13 +517,13 @@
             <source src="static/videos/test_2_0_1065640400.mp4" type="video/mp4">
           </video>
           <video autoplay loop muted playsinline>
-            <source src="static/videos/test_5_0_2656579102.mp4" type="video/mp4">
-          </video>
-          <video autoplay loop muted playsinline>
             <source src="static/videos/test_1_0_1150295423.mp4" type="video/mp4">
           </video>
           <video autoplay loop muted playsinline>
-            <source src="static/videos/test_9_0_3488308497.mp4" type="video/mp4">
+            <source src="static/videos/test_11_0_2521346317.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted playsinline>
+            <source src="static/videos/test_6_0_2152621784.mp4" type="video/mp4">
           </video>
           <video autoplay loop muted playsinline>
             <source src="static/videos/test_8_0_1080565479.mp4" type="video/mp4">
@@ -313,16 +537,21 @@
 <!-- Method Overview -->
 <section class="section" style="padding-top: 0;">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Method Overview</h2>
-        <div class="content has-text-justified">
-          <img src="static/images/placid_architecture.jpg" alt="PLACID model architecture" style="width: 100%; margin-bottom: 1rem;">
+    <h2 class="title is-3 has-text-centered">Method Overview</h2>
+    <div class="columns is-centered" style="align-items: center;">
+      <div class="column is-7">
+        <img src="static/images/placid_architecture.jpg" alt="PLACID model architecture" style="width: 100%; border-radius: 6px;">
+      </div>
+      <div class="column is-5">
+        <div class="content has-text-justified" style="font-size: 0.92rem;">
           <p>
             Our architecture builds upon an image-to-video diffusion transformer (DiT) with text guidance.
-            The visual inputs, encoded via CLIP, include: (i) first frame F<sub>1</sub> (a random assembly of
-            unprocessed object images), (ii) individual object images I<sub>1..N</sub>, and (iii) an optional
-            background B. A caption describing the desired composition is encoded via T5.
+            The visual inputs, encoded via CLIP, include: (i)&nbsp;first frame F<sub>1</sub> (a random assembly of
+            unprocessed object images), (ii)&nbsp;individual object images I<sub>1..N</sub>, and (iii)&nbsp;an optional
+            background&nbsp;B.
+          </p>
+          <p>
+            A caption describing the desired composition is encoded via T5.
             Image and text encodings are fed to the DiT through separate cross-attention mechanisms.
             The model flexibly handles varying numbers of objects, with or without a background image.
           </p>
@@ -335,31 +564,48 @@
 <!-- Training Data Generation -->
 <section class="section" style="padding-top: 0;">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
+    <h2 class="title is-3 has-text-centered">Training Data Generation</h2>
+    <div class="columns is-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Training Data Generation</h2>
         <div class="content has-text-justified">
-          <img src="static/images/placid_training_data.jpg" alt="Training data generation pipeline" style="width: 100%; margin-bottom: 1rem;">
           <p>
-            <b>Top:</b> Naive way of generating training video data, by simply interpolating the first and last frame.
-            <b>Bottom:</b> Our proposed method of generating motion-based temporally consistent video data,
-            in which objects follow synthetic trajectories from initial to final position.
-          </p>
-          <p>
-            Typical video training data rarely features isolated inanimate objects moving independently.
-            Simple interpolation between initial and final frames produces half-faded objects lacking motion consistency.
-            Instead, we synthesize short videos where objects follow smooth, physically plausible trajectories
+            We synthesize short videos where objects follow smooth, physically plausible trajectories
             from initial random locations to desired final positions. This temporal scaffold helps preserve object identity
-            during movement, prevents object erasure or duplication, and provides a dynamic progression chain that
-            regularizes the generation process.
+            during movement and prevents object erasure or duplication.
+            We obtain training data from three complementary sources, yielding about 50K diverse annotated tuples:
+            in-the-wild Unsplash compositions, manually designed layouts, Subject-200k paired data, and synthetic side-by-side 3D renders.
           </p>
-          <p>
-            We obtain training data from three complementary sources:
-            (i) <b>Professional Multi-Object Images</b> from Unsplash (in-the-wild and manual designs),
-            (ii) a <b>Subject-Driven Generation Paired Dataset</b> from Subject-200k, and
-            (iii) <b>Synthetic Side-by-side Compositions</b> using 3D renders with known dimensions.
-            Together, these yield about 50K diverse annotated tuples.
-          </p>
+        </div>
+        <img src="static/images/placid_training_data.jpg" alt="Training data generation pipeline" style="width: 100%; margin-bottom: 1rem; border-radius: 6px;">
+        <p class="has-text-centered" style="font-size: 0.85rem; color: #666; margin-bottom: 1.5rem;">
+          <b>Top:</b> Naive interpolation produces half-faded objects.
+          <b>Bottom:</b> Our motion-based trajectories yield temporally consistent videos.
+        </p>
+        <div class="traindata-video-grid">
+          <div>
+            <video autoplay loop muted playsinline>
+              <source src="static/videos/training_data/supmat_unsplash.mp4" type="video/mp4">
+            </video>
+            <div class="td-video-label">Unsplash (in-the-wild)</div>
+          </div>
+          <div>
+            <video autoplay loop muted playsinline>
+              <source src="static/videos/training_data/supmat_figmarot_pinkmakeup2.mp4" type="video/mp4">
+            </video>
+            <div class="td-video-label">Manual designs</div>
+          </div>
+          <div>
+            <video autoplay loop muted playsinline>
+              <source src="static/videos/training_data/motion_subject200k_3.mp4" type="video/mp4">
+            </video>
+            <div class="td-video-label">Subject-200k pairs</div>
+          </div>
+          <div>
+            <video autoplay loop muted playsinline>
+              <source src="static/videos/training_data/supmat_RGBA4.mp4" type="video/mp4">
+            </video>
+            <div class="td-video-label">Synthetic side-by-side</div>
+          </div>
         </div>
       </div>
     </div>
@@ -385,14 +631,14 @@
   </div>
 </section>
 
-<!-- Quantitative Results -->
+<!-- Quantitative Results & User Studies -->
 <section class="section" style="padding-top: 0;">
   <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Quantitative Results</h2>
+    <h2 class="title is-3 has-text-centered">Quantitative Results & User Studies</h2>
+    <div class="columns is-centered" style="align-items: flex-start;">
+      <!-- Quantitative Results: 50% -->
+      <div class="column" style="flex: 0 0 50%; max-width: 50%;">
         <div class="content">
-          <div style="overflow-x: auto;">
             <table class="comparison-table">
               <thead>
                 <tr>
@@ -444,33 +690,20 @@
               </tbody>
             </table>
           </div>
-          <p class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem;">
-            Quantitative comparison to state-of-the-art models. Metrics: Missing (percentage of objects missing in generated output),
-            CLIP-I and DINO (object identity preservation), CLIP-T (text alignment), Chamfer (background color fidelity),
-            and MSE-BG (photorealistic background faithfulness). PLACID achieves the best background preservation (MSE-BG, Chamfer),
-            the fewest missing objects, and competitive identity preservation scores.
+          <p class="has-text-justified" style="margin-top: 0.75rem; font-size: 0.82rem; color: #555;">
+            Metrics: Missing (% objects missing), CLIP-I/DINO (identity preservation),
+            CLIP-T (text alignment), Chamfer (background color fidelity), MSE-BG (background faithfulness).
           </p>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- User Studies -->
-<section class="section" style="padding-top: 0;">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">User Studies</h2>
-        <div class="content">
-          <img src="static/images/placid_userstudy.png" alt="User study results" style="width: 100%; margin-bottom: 1rem;">
-          <p class="has-text-justified">
-            We conduct two user studies with 1265 side-by-side comparisons evaluated by eight external users,
-            assessing (i) identity preservation and (ii) overall visual preference. PLACID significantly outperforms
-            all open-source alternatives in both studies. Although the margin against the closed-source NanoBanana
-            was smaller, our method still achieves a slight advantage in user preference.
-          </p>
-        </div>
+      <!-- User Studies: 50% -->
+      <div class="column" style="flex: 0 0 50%; max-width: 50%;">
+        <img src="static/images/placid_userstudy.png" alt="User study results" style="width: 100%; border-radius: 6px;">
+        <p class="has-text-justified" style="margin-top: 0.75rem; font-size: 0.82rem; color: #555;">
+          User studies with 1265 side-by-side comparisons by eight external users,
+          assessing identity preservation and overall visual preference. PLACID outperforms
+          all open-source alternatives in both studies.
+        </p>
       </div>
     </div>
   </div>
