@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories">
+  <meta name="keywords" content="PLACID, multi-object compositing, video diffusion, identity preservation, image generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:image" content="static/images/placid_teaser.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mbaradad.github.io/placid">
+  <meta property="og:title" content="PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories">
+  <meta property="og:description" content="We introduce PLACID, a framework that transforms a collection of object images into an appealing multi-object composite using video diffusion with synthetic trajectories.">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories">
+  <meta name="twitter:description" content="We introduce PLACID, a framework that transforms a collection of object images into an appealing multi-object composite using video diffusion with synthetic trajectories.">
+  <meta name="twitter:image" content="https://mbaradad.github.io/placid/static/images/placid_teaser.png">
+
+  <title>PLACID: Identity-Preserving Multi-Object Compositing</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <style>
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+    }
+    .publication-authors,
+    .publication-venue {
+      font-family: 'Google Sans', sans-serif;
+    }
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+    .hero-body {
+      padding-bottom: 1rem;
+    }
+    .section {
+      padding: 2rem 1.5rem;
+    }
+    .container.is-max-desktop {
+      max-width: 960px !important;
+    }
+    .publication-links .button {
+      margin: 4px;
+    }
+    .interpolation-panel {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .results-carousel .item {
+      margin: 0 0.5rem;
+    }
+    #BibTeX pre {
+      font-size: 0.75rem;
+      padding: 1rem;
+    }
+    .content h2 {
+      font-family: 'Google Sans', sans-serif;
+    }
+    .author-block {
+      display: inline-block;
+      margin: 0 0.25rem;
+    }
+    .teaser .hero-body {
+      padding-top: 0;
+    }
+    .publication-banner img {
+      max-height: none;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 6px 10px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    .comparison-table th {
+      background: #f5f5f5;
+      font-weight: 600;
+      border-bottom: 2px solid #ddd;
+    }
+    .comparison-table .best {
+      font-weight: 700;
+      color: #363636;
+    }
+    .comparison-table .method-name {
+      text-align: left;
+      font-weight: 500;
+    }
+    .comparison-table .section-header td {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #888;
+      text-align: left;
+      padding-top: 12px;
+      border-bottom: none;
+    }
+    .comparison-table tr.ours {
+      background: #f0f7ff;
+    }
+    .comparison-table tr.ours td {
+      font-weight: 600;
+    }
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 1.5rem;
+    }
+    .results-grid img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+    .video-grid video {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Hero / Title Section -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">
+            PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=Gemma_Canet">Gemma Canet Tarr&egrave;s</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://mbaradad.github.io">Manel Baradad</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=EJEfhJMAAAAJ">Francesc Moreno-Noguer</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://scholar.google.com/citations?user=yumeng_li">Yumeng Li</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-venue">
+            <span class="author-block">Amazon, Barcelona</span>
+          </div>
+
+          <!-- Links -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2602.00267"
+                   class="button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2602.00267"
+                   class="button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Uncomment when code is available
+              <span class="link-block">
+                <a href=""
+                   class="button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser Figure -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <img src="static/images/placid_teaser.png" alt="PLACID teaser showing multi-object compositing results" style="width: 100%;">
+      <h2 class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+        <span style="font-size: 0.95rem;">
+          PLACID enables simultaneous compositing of multiple objects into seamless natural scenes,
+          with optional text guidance for captions, color instructions, and creative compositions.
+        </span>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent advances in generative AI have dramatically improved photorealistic image synthesis,
+            yet they fall short for studio-level multi-object compositing. This task demands simultaneous
+            (i) near-perfect preservation of each item's identity, (ii) precise background and color fidelity,
+            (iii) layout and design elements control, and (iv) complete, appealing displays showcasing all objects.
+            However, current state-of-the-art models often alter object details, omit or duplicate objects,
+            and produce layouts with incorrect relative sizing or inconsistent item presentations.
+          </p>
+          <p>
+            To bridge this gap, we introduce <b>PLACID</b>, a framework that transforms a collection
+            of object images into an appealing multi-object composite. Our approach makes two main contributions.
+            First, we leverage a pretrained image-to-video (I2V) diffusion model with text control
+            to preserve object consistency, identities, and background details by exploiting temporal priors from videos.
+            Second, we propose a novel data curation strategy that generates synthetic sequences where randomly placed
+            objects smoothly move to their target positions. This synthetic data aligns with the video model's temporal
+            priors during training. At inference, objects initialized at random positions consistently converge into coherent
+            layouts guided by text, with the final frame serving as the composite image.
+          </p>
+          <p>
+            Extensive quantitative evaluations and user studies demonstrate that PLACID surpasses state-of-the-art
+            methods in multi-object compositing, achieving superior identity, background, and color preservation,
+            with fewer omitted objects and visually appealing results.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Example Results -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <h2 class="title is-3">Example Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            Curated results from PLACID on our evaluation set, spanning 1 to 5 objects
+            with both plain-color and photorealistic backgrounds.
+          </p>
+        </div>
+        <div class="results-grid">
+          <img src="static/images/examples/7_1.png" alt="1 object: watch on yellow backdrop">
+          <img src="static/images/examples/2_1.png" alt="2 objects: rings on purple backdrop">
+          <img src="static/images/examples/5_1.png" alt="2 objects: ceramics and vase">
+          <img src="static/images/examples/1_1.png" alt="3 objects: duck, truck, robot on purple">
+          <img src="static/images/examples/9_1.png" alt="3 objects: scarf, necklace, and accessories">
+          <img src="static/images/examples/3_1.png" alt="4 objects: armchairs, table, lamp on yellow">
+          <img src="static/images/examples/8_1.png" alt="5 objects: food items on table">
+          <img src="static/images/examples/11.png" alt="Objects composited on background">
+          <img src="static/images/examples/22.png" alt="Objects composited on background">
+        </div>
+
+        <h3 class="title is-4" style="margin-top: 1.5rem;">Video Outputs</h3>
+        <div class="content has-text-justified">
+          <p>
+            PLACID generates videos where objects transition from random positions to coherent layouts.
+            The final frame serves as the composite image.
+          </p>
+        </div>
+        <div class="video-grid">
+          <video autoplay loop muted playsinline>
+            <source src="static/videos/test_7_0_1335230976.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted playsinline>
+            <source src="static/videos/test_2_0_1065640400.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted playsinline>
+            <source src="static/videos/test_5_0_2656579102.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted playsinline>
+            <source src="static/videos/test_1_0_1150295423.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted playsinline>
+            <source src="static/videos/test_9_0_3488308497.mp4" type="video/mp4">
+          </video>
+          <video autoplay loop muted playsinline>
+            <source src="static/videos/test_8_0_1080565479.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Method Overview -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Method Overview</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/placid_architecture.jpg" alt="PLACID model architecture" style="width: 100%; margin-bottom: 1rem;">
+          <p>
+            Our architecture builds upon an image-to-video diffusion transformer (DiT) with text guidance.
+            The visual inputs, encoded via CLIP, include: (i) first frame F<sub>1</sub> (a random assembly of
+            unprocessed object images), (ii) individual object images I<sub>1..N</sub>, and (iii) an optional
+            background B. A caption describing the desired composition is encoded via T5.
+            Image and text encodings are fed to the DiT through separate cross-attention mechanisms.
+            The model flexibly handles varying numbers of objects, with or without a background image.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Training Data Generation -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Training Data Generation</h2>
+        <div class="content has-text-justified">
+          <img src="static/images/placid_training_data.jpg" alt="Training data generation pipeline" style="width: 100%; margin-bottom: 1rem;">
+          <p>
+            <b>Top:</b> Naive way of generating training video data, by simply interpolating the first and last frame.
+            <b>Bottom:</b> Our proposed method of generating motion-based temporally consistent video data,
+            in which objects follow synthetic trajectories from initial to final position.
+          </p>
+          <p>
+            Typical video training data rarely features isolated inanimate objects moving independently.
+            Simple interpolation between initial and final frames produces half-faded objects lacking motion consistency.
+            Instead, we synthesize short videos where objects follow smooth, physically plausible trajectories
+            from initial random locations to desired final positions. This temporal scaffold helps preserve object identity
+            during movement, prevents object erasure or duplication, and provides a dynamic progression chain that
+            regularizes the generation process.
+          </p>
+          <p>
+            We obtain training data from three complementary sources:
+            (i) <b>Professional Multi-Object Images</b> from Unsplash (in-the-wild and manual designs),
+            (ii) a <b>Subject-Driven Generation Paired Dataset</b> from Subject-200k, and
+            (iii) <b>Synthetic Side-by-side Compositions</b> using 3D renders with known dimensions.
+            Together, these yield about 50K diverse annotated tuples.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison to State of the Art -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Comparison to State of the Art</h2>
+        <div class="content">
+          <img src="static/images/placid_comparison.png" alt="Comparison to state of the art methods" style="width: 100%; margin-bottom: 1rem;">
+          <p class="has-text-justified">
+            Qualitative comparison of PLACID to VACE, UNO, DSD, OmniGen, MS-Diffusion, NanoBanana
+            and Qwen-Image-Edit. PLACID achieves superior identity preservation, background fidelity,
+            and fewer missing objects across diverse compositing scenarios.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quantitative Results -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Quantitative Results</h2>
+        <div class="content">
+          <div style="overflow-x: auto;">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th style="text-align: left;">Method</th>
+                  <th>CLIP-I &uarr;</th>
+                  <th>DINO &uarr;</th>
+                  <th>CLIP-T &uarr;</th>
+                  <th>MSE-BG &darr;</th>
+                  <th>Chamfer &darr;</th>
+                  <th>Missing &darr;</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="section-header"><td colspan="7">Multi-Subject Guided Image Generation</td></tr>
+                <tr>
+                  <td class="method-name">UNO</td>
+                  <td>0.696</td><td>0.450</td><td>0.346</td><td>0.062</td><td>14.733</td><td>0.099</td>
+                </tr>
+                <tr>
+                  <td class="method-name">DSD</td>
+                  <td>0.650</td><td>0.362</td><td>0.347</td><td>0.083</td><td>11.886</td><td>0.102</td>
+                </tr>
+                <tr>
+                  <td class="method-name">OmniGen</td>
+                  <td>0.724</td><td>0.478</td><td>0.337</td><td>0.119</td><td>15.120</td><td>0.128</td>
+                </tr>
+                <tr>
+                  <td class="method-name">MS-Diffusion</td>
+                  <td>0.574</td><td>0.245</td><td>0.314</td><td>0.166</td><td>16.322</td><td>0.071</td>
+                </tr>
+                <tr class="section-header"><td colspan="7">Image and Video Editing Models</td></tr>
+                <tr>
+                  <td class="method-name">VACE</td>
+                  <td>0.689</td><td>0.439</td><td>0.343</td><td>0.096</td><td>9.948</td><td>0.096</td>
+                </tr>
+                <tr>
+                  <td class="method-name">NanoBanana</td>
+                  <td>0.662</td><td>0.390</td><td>0.344</td><td>0.029</td><td>13.146</td><td>0.138</td>
+                </tr>
+                <tr>
+                  <td class="method-name">Qwen</td>
+                  <td>0.625</td><td>0.308</td><td>0.317</td><td>0.097</td><td>49.317</td><td>0.115</td>
+                </tr>
+                <tr class="ours">
+                  <td class="method-name">Ours (PLACID)</td>
+                  <td class="best">0.705</td><td class="best">0.440</td><td>0.336</td>
+                  <td class="best">0.019</td><td class="best">4.641</td><td class="best">0.044</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="has-text-justified" style="margin-top: 1rem; font-size: 0.9rem;">
+            Quantitative comparison to state-of-the-art models. Metrics: Missing (percentage of objects missing in generated output),
+            CLIP-I and DINO (object identity preservation), CLIP-T (text alignment), Chamfer (background color fidelity),
+            and MSE-BG (photorealistic background faithfulness). PLACID achieves the best background preservation (MSE-BG, Chamfer),
+            the fewest missing objects, and competitive identity preservation scores.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- User Studies -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">User Studies</h2>
+        <div class="content">
+          <img src="static/images/placid_userstudy.png" alt="User study results" style="width: 100%; margin-bottom: 1rem;">
+          <p class="has-text-justified">
+            We conduct two user studies with 1265 side-by-side comparisons evaluated by eight external users,
+            assessing (i) identity preservation and (ii) overall visual preference. PLACID significantly outperforms
+            all open-source alternatives in both studies. Although the margin against the closed-source NanoBanana
+            was smaller, our method still achieves a slight advantage in user preference.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Emerging Capabilities -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Emerging Capabilities</h2>
+        <div class="content">
+          <img src="static/images/placid_emerging.jpg" alt="Emerging capabilities of PLACID" style="width: 100%; margin-bottom: 1rem;">
+          <div class="has-text-justified">
+            <p>
+              While PLACID is trained for text-guided multi-object compositing, it exhibits several emerging capabilities:
+            </p>
+            <ul>
+              <li><b>Creative Composite Layouts:</b> Automatically arranges objects in plausible scenes without explicit layout guidance.</li>
+              <li><b>Multi-Entity Subject-Driven Generation:</b> Creates photorealistic scenes from text even without a background image, including interacting elements.</li>
+              <li><b>Virtual Try-On:</b> Integrates new objects into existing scenes, enabling applications such as virtual clothing try-on.</li>
+              <li><b>Image Editing:</b> Leverages text guidance, identity preservation, and fine-grained color control for tasks from simple color adjustments to complex compositional changes.</li>
+              <li><b>Video Generation:</b> Produces short, consistent videos for edits or scene completions, usable as animated creative content.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{canettarres2026placid,
+  title={PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories},
+  author={Canet Tarr{\`e}s, Gemma and Baradad, Manel and Moreno-Noguer, Francesc and Li, Yumeng},
+  journal={arXiv preprint arXiv:2602.00267},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content" style="text-align: center;">
+          <p>
+            The template for this website was borrowed from <a href="https://nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
