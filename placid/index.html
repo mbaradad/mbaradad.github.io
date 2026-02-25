@@ -221,9 +221,9 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
-    .video-grid video {
+    .video-grid img {
       width: 100%;
       aspect-ratio: 1 / 1;
       object-fit: cover;
@@ -264,16 +264,16 @@
           </h1>
           <div class="is-size-5 publication-authors">
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=Gemma_Canet">Gemma Canet Tarr&egrave;s</a>,
+              <a href="https://gemmact.github.io/">Gemma Canet Tarr&egrave;s</a>,
             </span>
             <span class="author-block">
-              <a href="https://mbaradad.github.io">Manel Baradad</a>,
+              <a href="http://mbaradad.github.io/">Manel Baradad</a>,
             </span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=EJEfhJMAAAAJ">Francesc Moreno-Noguer</a>,
+              <a href="https://www.iri.upc.edu/people/fmoreno/">Francesc Moreno-Noguer</a>,
             </span>
             <span class="author-block">
-              <a href="https://scholar.google.com/citations?user=yumeng_li">Yumeng Li</a>
+              <a href="https://yumengli007.github.io/">Yumeng Li</a>
             </span>
           </div>
 
@@ -526,34 +526,100 @@
             The final frame serves as the composite image.
           </p>
         </div>
-        <div class="video-grid">
-          <video autoplay loop muted playsinline>
-            <source src="static/videos/test_7_0_1335230976.mp4" type="video/mp4">
-          </video>
-          <video autoplay loop muted playsinline>
-            <source src="static/videos/test_2_0_1065640400.mp4" type="video/mp4">
-          </video>
-          <video autoplay loop muted playsinline>
-            <source src="static/videos/test_5_0_2764686921.mp4" type="video/mp4">
-          </video>
-          <video autoplay loop muted playsinline>
-            <source src="static/videos/test_1_0_1150295423.mp4" type="video/mp4">
-          </video>
-          <video autoplay loop muted playsinline>
-            <source src="static/videos/test_11_0_2521346317.mp4" type="video/mp4">
-          </video>
-          <video autoplay loop muted playsinline>
-            <source src="static/videos/test_9_0_3488308497.mp4" type="video/mp4">
-          </video>
-          <video autoplay loop muted playsinline>
-            <source src="static/videos/test_6_0_2152621784.mp4" type="video/mp4">
-          </video>
-          <video autoplay loop muted playsinline>
-            <source src="static/videos/test_3_0_2435251980.mp4" type="video/mp4">
-          </video>
-          <video autoplay loop muted playsinline>
-            <source src="static/videos/test_8_0_1080565479.mp4" type="video/mp4">
-          </video>
+        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+          <button id="frame-play-btn" style="padding: 4px 14px; font-size: 1rem; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">&#9654;</button>
+          <input id="frame-slider" type="range" min="1" max="33" value="1" style="flex: 1;">
+          <span id="frame-counter" style="font-size: 0.85rem; color: #888; min-width: 50px; text-align: right;">1 / 33</span>
+        </div>
+        <div class="video-grid" id="frame-grid">
+          <img id="frame-7"  src="static/videos/frames/test_7/frame_0001.jpg"  alt="test 7">
+          <img id="frame-2"  src="static/videos/frames/test_2/frame_0001.jpg"  alt="test 2">
+          <img id="frame-5"  src="static/videos/frames/test_5/frame_0001.jpg"  alt="test 5">
+          <img id="frame-1"  src="static/videos/frames/test_1/frame_0001.jpg"  alt="test 1">
+          <img id="frame-11" src="static/videos/frames/test_11/frame_0001.jpg" alt="test 11">
+          <img id="frame-9"  src="static/videos/frames/test_9/frame_0001.jpg"  alt="test 9">
+          <img id="frame-6"  src="static/videos/frames/test_6/frame_0001.jpg"  alt="test 6">
+          <img id="frame-3"  src="static/videos/frames/test_3/frame_0001.jpg"  alt="test 3">
+          <img id="frame-8"  src="static/videos/frames/test_8/frame_0001.jpg"  alt="test 8">
+        </div>
+        <script>
+        (function() {
+          var testIds = [7, 2, 5, 1, 11, 9, 6, 3, 8];
+          var totalFrames = 33;
+          var slider = document.getElementById('frame-slider');
+          var counter = document.getElementById('frame-counter');
+          var playBtn = document.getElementById('frame-play-btn');
+          var imgs = testIds.map(function(id) { return document.getElementById('frame-' + id); });
+          var playing = false;
+          var forward = true;
+          var animId = null;
+          var lastTime = null;
+          var fps = 20;
+
+          // Preload all frames
+          testIds.forEach(function(id) {
+            for (var i = 1; i <= totalFrames; i++) {
+              var img = new Image();
+              img.src = 'static/videos/frames/test_' + id + '/frame_' + String(i).padStart(4, '0') + '.jpg';
+            }
+          });
+
+          function setFrame(n) {
+            var padded = String(n).padStart(4, '0');
+            imgs.forEach(function(img, i) {
+              img.src = 'static/videos/frames/test_' + testIds[i] + '/frame_' + padded + '.jpg';
+            });
+            slider.value = n;
+            counter.textContent = n + ' / ' + totalFrames;
+          }
+
+          slider.addEventListener('input', function() {
+            setFrame(parseInt(slider.value));
+          });
+
+          playBtn.addEventListener('click', function() {
+            playing = !playing;
+            playBtn.textContent = playing ? '\u275A\u275A' : '\u25B6';
+            if (playing) {
+              lastTime = performance.now();
+              animId = requestAnimationFrame(animate);
+            } else if (animId) {
+              cancelAnimationFrame(animId);
+            }
+          });
+
+          var holdUntil = 0;
+          var holdMs = 800; // pause at first/last frame
+
+          function animate(now) {
+            if (!playing) return;
+            if (now < holdUntil) {
+              animId = requestAnimationFrame(animate);
+              return;
+            }
+            var dt = now - lastTime;
+            if (dt >= 1000 / fps) {
+              lastTime = now;
+              var cur = parseInt(slider.value);
+              if (forward) {
+                cur++;
+                if (cur >= totalFrames) { cur = totalFrames; forward = false; holdUntil = now + holdMs; }
+              } else {
+                cur--;
+                if (cur <= 1) { cur = 1; forward = true; holdUntil = now + holdMs; }
+              }
+              setFrame(cur);
+            }
+            animId = requestAnimationFrame(animate);
+          }
+
+          // Auto-play on load
+          playing = true;
+          playBtn.textContent = '\u275A\u275A';
+          lastTime = performance.now();
+          animId = requestAnimationFrame(animate);
+        })();
+        </script>
         </div>
       </div>
     </div>
@@ -640,9 +706,9 @@
 
 <!-- Comparison to State of the Art -->
 <section class="section" style="padding-top: 0;">
-  <div class="container is-max-desktop">
+  <div class="container is-max-widescreen">
     <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
+      <div class="column is-full">
         <h2 class="title is-3">Comparison to State of the Art</h2>
         <div class="content">
           <img src="static/images/placid_comparison.png" alt="Comparison to state of the art methods" style="width: 100%; margin-bottom: 1rem;">
