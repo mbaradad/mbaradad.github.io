@@ -229,6 +229,12 @@
       object-fit: cover;
       border-radius: 6px;
       box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      border: 3px solid transparent;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .video-grid img.final-frame {
+      border-color: #2ecc71;
+      box-shadow: 0 0 10px rgba(46,204,113,0.4);
     }
     /* Training data video grid */
     .traindata-video-grid {
@@ -359,8 +365,11 @@
 
         function setFrame(n) {
           var padded = String(n).padStart(4, '0');
+          var isFinal = (n === totalFrames);
           imgs.forEach(function(img, i) {
             img.src = 'static/videos/frames/test_' + testIds[i] + '/frame_' + padded + '.jpg';
+            if (isFinal) { img.classList.add('final-frame'); }
+            else { img.classList.remove('final-frame'); }
           });
           slider.value = n;
           counter.textContent = n + ' / ' + totalFrames;
@@ -415,7 +424,7 @@
       </script>
       <h2 class="subtitle has-text-centered" style="margin-top: 0.75rem;">
         <span style="font-size: 0.95rem;">
-          PLACID enables simultaneous compositing of multiple objects seamlessly into background scenes, by exploiting natural priors of the world learnt by video models.
+          PLACID enables simultaneous compositing of multiple objects into background scenes, by exploiting natural priors of the world learnt by video models.
         </span>
       </h2>
     </div>
