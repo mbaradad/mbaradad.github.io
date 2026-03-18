@@ -63,6 +63,38 @@
       font-size: 0.75rem;
       padding: 1rem;
     }
+    .bibtex-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    .bibtex-header .title {
+      margin-bottom: 0;
+    }
+    .bibtex-copy-button {
+      border: 1px solid #dbdbdb;
+      border-radius: 999px;
+      background: #fff;
+      color: #363636;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 600;
+      line-height: 1;
+      padding: 0.55rem 0.9rem;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+    .bibtex-copy-button:hover {
+      background: #f5f5f5;
+      border-color: #b5b5b5;
+    }
+    .bibtex-copy-button.is-copied {
+      background: #eefaf3;
+      border-color: #48c78e;
+      color: #257953;
+    }
     .content h2 {
       font-family: 'Google Sans', sans-serif;
     }
@@ -176,7 +208,7 @@
       position: relative;
     }
     .example-tile .tile-objects img:hover {
-      transform: scale(9);
+      transform: scale(7);
       z-index: 10;
       box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     }
@@ -197,7 +229,7 @@
       position: relative;
     }
     .example-tile .tile-bg img:hover {
-      transform: scale(9);
+      transform: scale(7);
       z-index: 10;
       box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     }
@@ -829,11 +861,16 @@
 <!-- BibTeX -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{canettarres2026placid,
+    <div class="bibtex-header">
+      <h2 class="title">BibTeX</h2>
+      <button class="bibtex-copy-button" id="bibtex-copy-button" type="button" aria-label="Copy BibTeX citation">
+        Copy
+      </button>
+    </div>
+    <pre><code id="bibtex-code">@inproceedings{canettarres2026placid,
   title={PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories},
   author={Canet Tarr{\`e}s, Gemma and Baradad, Manel and Moreno-Noguer, Francesc and Li, Yumeng},
-  journal={arXiv preprint arXiv:2602.00267},
+  booktitle={CVPR},
   year={2026}
 }</code></pre>
   </div>
@@ -853,6 +890,34 @@
     </div>
   </div>
 </footer>
+
+<script>
+  (function() {
+    var copyButton = document.getElementById('bibtex-copy-button');
+    var bibtexCode = document.getElementById('bibtex-code');
+
+    if (!copyButton || !bibtexCode) return;
+
+    var defaultLabel = 'Copy';
+    var copiedLabel = 'Copied';
+    var resetTimer = null;
+
+    function setCopiedState() {
+      copyButton.textContent = copiedLabel;
+      copyButton.classList.add('is-copied');
+      if (resetTimer) clearTimeout(resetTimer);
+      resetTimer = setTimeout(function() {
+        copyButton.textContent = defaultLabel;
+        copyButton.classList.remove('is-copied');
+      }, 1800);
+    }
+
+    copyButton.addEventListener('click', function() {
+      var text = bibtexCode.textContent;
+      navigator.clipboard.writeText(text).then(setCopiedState);
+    });
+  })();
+</script>
 
 </body>
 </html>
