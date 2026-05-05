@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories">
+  <meta name="keywords" content="PLACID, multi-object compositing, video diffusion, identity preservation, image generation">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:image" content="static/images/placid_teaser.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mbaradad.github.io/placid">
+  <meta property="og:title" content="PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories">
+  <meta property="og:description" content="We introduce PLACID, a framework that transforms a collection of object images into an appealing multi-object composite using video diffusion with synthetic trajectories.">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories">
+  <meta name="twitter:description" content="We introduce PLACID, a framework that transforms a collection of object images into an appealing multi-object composite using video diffusion with synthetic trajectories.">
+  <meta name="twitter:image" content="https://mbaradad.github.io/placid/static/images/placid_teaser.png">
+
+  <title>PLACID: Identity-Preserving Multi-Object Compositing</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+
+  <style>
+    .publication-title {
+      font-family: 'Google Sans', sans-serif;
+      font-weight: 700;
+    }
+    .publication-authors,
+    .publication-venue {
+      font-family: 'Google Sans', sans-serif;
+    }
+    body {
+      font-family: 'Noto Sans', sans-serif;
+    }
+    .hero-body {
+      padding-bottom: 1rem;
+    }
+    .section {
+      padding: 2rem 1.5rem;
+    }
+    .container.is-max-desktop {
+      max-width: 960px !important;
+    }
+    .publication-links .button {
+      margin: 4px;
+    }
+    .interpolation-panel {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 1.5rem;
+    }
+    .results-carousel .item {
+      margin: 0 0.5rem;
+    }
+    #BibTeX pre {
+      font-size: 0.75rem;
+      padding: 1rem;
+    }
+    .content h2 {
+      font-family: 'Google Sans', sans-serif;
+    }
+    .author-block {
+      display: inline-block;
+      margin: 0 0.25rem;
+    }
+    .teaser .hero-body {
+      padding-top: 0;
+    }
+    .publication-banner img {
+      max-height: none;
+    }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.72rem;
+    }
+    .comparison-table th,
+    .comparison-table td {
+      padding: 4px 5px;
+      text-align: center;
+      border-bottom: 1px solid #eee;
+    }
+    .comparison-table th {
+      background: #f5f5f5;
+      font-weight: 600;
+      border-bottom: 2px solid #ddd;
+    }
+    .comparison-table .best {
+      font-weight: 700;
+      color: #363636;
+    }
+    .comparison-table .method-name {
+      text-align: left;
+      font-weight: 500;
+    }
+    .comparison-table .section-header td {
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #888;
+      text-align: left;
+      padding-top: 12px;
+      border-bottom: none;
+    }
+    .comparison-table tr.ours {
+      background: #f0f7ff;
+    }
+    .comparison-table tr.ours td {
+      font-weight: 600;
+    }
+    /* Example tiles: 3-column grid */
+    .examples-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 768px) {
+      .examples-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 480px) {
+      .examples-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .example-tile {
+      background: #fafafa;
+      border-radius: 10px;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: box-shadow 0.2s;
+    }
+    .example-tile:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+    .example-tile .tile-section-label {
+      font-size: 0.62rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #aaa;
+      margin-bottom: 4px;
+      width: 100%;
+      text-align: left;
+    }
+    .example-tile .tile-objects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: flex-start;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 2px;
+    }
+    .example-tile .tile-objects img {
+      height: 44px;
+      width: auto;
+      max-width: 100%;
+      border-radius: 4px;
+      border: 1px solid #e4e4e4;
+      object-fit: contain;
+      background: #fff;
+      display: inline-block;
+      transition: transform 0.25s ease, z-index 0s;
+      cursor: pointer;
+      position: relative;
+    }
+    .example-tile .tile-objects img:hover {
+      transform: scale(9);
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .example-tile .tile-bg {
+      width: 100%;
+      margin-bottom: 2px;
+      text-align: left;
+    }
+    .example-tile .tile-bg img {
+      height: 40px;
+      width: auto;
+      border-radius: 4px;
+      border: 2px solid #b5d4f0;
+      object-fit: contain;
+      display: inline-block;
+      transition: transform 0.25s ease, z-index 0s;
+      cursor: pointer;
+      position: relative;
+    }
+    .example-tile .tile-bg img:hover {
+      transform: scale(9);
+      z-index: 10;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    }
+    .example-tile .tile-arrow {
+      font-size: 0.85rem;
+      color: #bbb;
+      margin: 3px 0;
+    }
+    .example-tile .tile-output img {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .example-tile .tile-caption {
+      font-size: 0.72rem;
+      color: #999;
+      margin-top: 6px;
+      text-align: center;
+    }
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 0.5rem;
+    }
+    .video-grid img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      border: 3px solid transparent;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .video-grid img.final-frame {
+      border-color: #2ecc71;
+      box-shadow: 0 0 10px rgba(46,204,113,0.4);
+    }
+    /* Training data video grid */
+    .traindata-video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 1rem;
+    }
+    .traindata-video-grid video {
+      width: 100%;
+      border-radius: 6px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+    }
+    .traindata-video-grid .td-video-label {
+      font-size: 0.8rem;
+      color: #777;
+      text-align: center;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- Hero / Title Section -->
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-2 publication-title">
+            PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories
+          </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://gemmact.github.io/">Gemma Canet Tarr&eacute;s</a>,
+            </span>
+            <span class="author-block">
+              <a href="http://mbaradad.github.io/">Manel Baradad</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://www.iri.upc.edu/people/fmoreno/">Francesc Moreno-Noguer</a>,
+            </span>
+            <span class="author-block">
+              <a href="https://yumengli007.github.io/">Yumeng Li</a>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-venue">
+            <span class="author-block">Amazon, Barcelona</span>
+          </div>
+
+          <!-- Links -->
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2602.00267"
+                   class="button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href="https://arxiv.org/pdf/2602.00267"
+                   class="button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <!-- Uncomment when code is available
+              <span class="link-block">
+                <a href=""
+                   class="button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code</span>
+                </a>
+              </span>
+              -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Teaser: Video Outputs -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px;">
+        <button id="frame-play-btn" style="padding: 4px 14px; font-size: 1rem; cursor: pointer; border: 1px solid #ccc; border-radius: 4px; background: #fff;">&#9654;</button>
+        <input id="frame-slider" type="range" min="1" max="33" value="1" style="flex: 1;">
+        <span id="frame-counter" style="font-size: 0.85rem; color: #888; min-width: 50px; text-align: right;">1 / 33</span>
+      </div>
+      <div class="video-grid" id="frame-grid">
+        <img id="frame-7"  src="static/videos/frames/test_7/frame_0001.jpg"  alt="test 7">
+        <img id="frame-2"  src="static/videos/frames/test_2/frame_0001.jpg"  alt="test 2">
+        <img id="frame-5"  src="static/videos/frames/test_5/frame_0001.jpg"  alt="test 5">
+        <img id="frame-1"  src="static/videos/frames/test_1/frame_0001.jpg"  alt="test 1">
+        <img id="frame-11" src="static/videos/frames/test_11/frame_0001.jpg" alt="test 11">
+        <img id="frame-9"  src="static/videos/frames/test_9/frame_0001.jpg"  alt="test 9">
+        <img id="frame-6"  src="static/videos/frames/test_6/frame_0001.jpg"  alt="test 6">
+        <img id="frame-3"  src="static/videos/frames/test_3/frame_0001.jpg"  alt="test 3">
+        <img id="frame-8"  src="static/videos/frames/test_8/frame_0001.jpg"  alt="test 8">
+      </div>
+      <script>
+      (function() {
+        var testIds = [7, 2, 5, 1, 11, 9, 6, 3, 8];
+        var totalFrames = 33;
+        var slider = document.getElementById('frame-slider');
+        var counter = document.getElementById('frame-counter');
+        var playBtn = document.getElementById('frame-play-btn');
+        var imgs = testIds.map(function(id) { return document.getElementById('frame-' + id); });
+        var playing = false;
+        var forward = true;
+        var animId = null;
+        var lastTime = null;
+        var fps = 12;
+
+        // Preload all frames
+        testIds.forEach(function(id) {
+          for (var i = 1; i <= totalFrames; i++) {
+            var img = new Image();
+            img.src = 'static/videos/frames/test_' + id + '/frame_' + String(i).padStart(4, '0') + '.jpg';
+          }
+        });
+
+        function setFrame(n) {
+          var padded = String(n).padStart(4, '0');
+          var isFinal = (n === totalFrames);
+          imgs.forEach(function(img, i) {
+            img.src = 'static/videos/frames/test_' + testIds[i] + '/frame_' + padded + '.jpg';
+            if (isFinal) { img.classList.add('final-frame'); }
+            else { img.classList.remove('final-frame'); }
+          });
+          slider.value = n;
+          counter.textContent = n + ' / ' + totalFrames;
+        }
+
+        slider.addEventListener('input', function() {
+          setFrame(parseInt(slider.value));
+        });
+
+        playBtn.addEventListener('click', function() {
+          playing = !playing;
+          playBtn.textContent = playing ? '\u275A\u275A' : '\u25B6';
+          if (playing) {
+            lastTime = performance.now();
+            animId = requestAnimationFrame(animate);
+          } else if (animId) {
+            cancelAnimationFrame(animId);
+          }
+        });
+
+        var holdUntil = 0;
+        var holdMs = 800; // pause at first/last frame
+
+        function animate(now) {
+          if (!playing) return;
+          if (now < holdUntil) {
+            animId = requestAnimationFrame(animate);
+            return;
+          }
+          var dt = now - lastTime;
+          if (dt >= 1000 / fps) {
+            lastTime = now;
+            var cur = parseInt(slider.value);
+            if (forward) {
+              cur++;
+              if (cur >= totalFrames) { cur = totalFrames; forward = false; holdUntil = now + holdMs; }
+            } else {
+              cur--;
+              if (cur <= 1) { cur = 1; forward = true; holdUntil = now + holdMs; }
+            }
+            setFrame(cur);
+          }
+          animId = requestAnimationFrame(animate);
+        }
+
+        // Auto-play on load
+        playing = true;
+        playBtn.textContent = '\u275A\u275A';
+        lastTime = performance.now();
+        animId = requestAnimationFrame(animate);
+      })();
+      </script>
+      <h2 class="subtitle has-text-centered" style="margin-top: 0.75rem;">
+        <span style="font-size: 0.95rem;">
+          PLACID enables simultaneous compositing of multiple objects into background scenes, by exploiting natural priors of the world learnt by video models.
+        </span>
+      </h2>
+    </div>
+  </div>
+</section>
+
+<!-- Abstract -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            Recent advances in generative AI have dramatically improved photorealistic image synthesis,
+            yet they fall short for studio-level multi-object compositing. This task demands simultaneous
+            (i) near-perfect preservation of each item's identity, (ii) precise background and color fidelity,
+            (iii) layout and design elements control, and (iv) complete, appealing displays showcasing all objects.
+            However, current state-of-the-art models often alter object details, omit or duplicate objects,
+            and produce layouts with incorrect relative sizing or inconsistent item presentations.
+          </p>
+          <p>
+            To bridge this gap, we introduce <b>PLACID</b>, a framework that transforms a collection
+            of object images into an appealing multi-object composite. Our approach makes two main contributions.
+            First, we leverage a pretrained image-to-video (I2V) diffusion model with text control
+            to preserve object consistency, identities, and background details by exploiting temporal priors from videos.
+            Second, we propose a novel data curation strategy that generates synthetic sequences where randomly placed
+            objects smoothly move to their target positions. This synthetic data aligns with the video model's temporal
+            priors during training. At inference, objects initialized at random positions consistently converge into coherent
+            layouts guided by text, with the final frame serving as the composite image.
+          </p>
+          <p>
+            Extensive quantitative evaluations and user studies demonstrate that PLACID surpasses state-of-the-art
+            methods in multi-object compositing, achieving superior identity, background, and color preservation,
+            with fewer omitted objects and visually appealing results.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Example Results -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column">
+        <h2 class="title is-3 has-text-centered">Example Results</h2>
+        <div class="content has-text-justified">
+          <p>
+            Given a set of object images, an optional background, and a text caption, PLACID produces
+            a coherent multi-object composite. Below we show inputs (object photos + background) and the
+            corresponding outputs on our evaluation set.
+          </p>
+        </div>
+
+        <div class="examples-grid">
+
+          <!-- 1 object: watch -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/12.jpg" alt="watch">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg2.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/7_1.png" alt="result: watch on yellow backdrop"></div>
+            <div class="tile-caption">1 object</div>
+          </div>
+
+          <!-- 2 objects: rings -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/1abfbe4f.jpg" alt="ring 1">
+              <img src="static/images/inputs/1c9f948a.jpg" alt="ring 2">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg5.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/2_1.png" alt="result: rings on purple backdrop"></div>
+            <div class="tile-caption">2 objects</div>
+          </div>
+
+          <!-- 2 objects: ceramics -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/36.jpg" alt="ceramics">
+              <img src="static/images/inputs/0a2efe1f.jpg" alt="vase">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg7.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/5_1.png" alt="result: ceramics and vase"></div>
+            <div class="tile-caption">2 objects</div>
+          </div>
+
+          <!-- 3 objects: duck, truck, robot -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/50.jpg" alt="duck">
+              <img src="static/images/inputs/0bbf3d2f.jpg" alt="truck">
+              <img src="static/images/inputs/18.jpg" alt="robot">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg40.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/1_1.png" alt="result: duck, truck, robot"></div>
+            <div class="tile-caption">3 objects</div>
+          </div>
+
+          <!-- 3 objects: chair, table, vase -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/1bd2c385.jpg" alt="orange chair">
+              <img src="static/images/inputs/0faf08e4.jpg" alt="wooden table">
+              <img src="static/images/inputs/0eff2fa0.jpg" alt="multicolored vase">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg42.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/11_1.png" alt="result: chair, table, vase"></div>
+            <div class="tile-caption">3 objects</div>
+          </div>
+
+          <!-- 3 objects: accessories -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/0ca1a4ab.jpg" alt="scarf">
+              <img src="static/images/inputs/00fca538.jpg" alt="necklace">
+              <img src="static/images/inputs/1a8f660b.jpg" alt="bracelet">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg26.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/9_1.png" alt="result: scarf, necklace, accessories"></div>
+            <div class="tile-caption">3 objects</div>
+          </div>
+
+          <!-- 4 objects: teddy bear, rubik's cube, etc -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/13.jpg" alt="teddy bear">
+              <img src="static/images/inputs/20.jpg" alt="rubik's cube">
+              <img src="static/images/inputs/31.jpg" alt="toy">
+              <img src="static/images/inputs/34.jpg" alt="toy">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg48.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/6_1.png" alt="result: teddy bear and toys"></div>
+            <div class="tile-caption">4 objects</div>
+          </div>
+
+          <!-- 4 objects: furniture -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/0a1e57ec.jpg" alt="plaid chair">
+              <img src="static/images/inputs/0c0cc953.jpg" alt="blue chair">
+              <img src="static/images/inputs/1b99e8aa.jpg" alt="table">
+              <img src="static/images/inputs/0a2f9964.jpg" alt="lamp">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg43.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/3_1.png" alt="result: armchairs, table, lamp"></div>
+            <div class="tile-caption">4 objects</div>
+          </div>
+
+          <!-- 5 objects: food -->
+          <div class="example-tile">
+            <div class="tile-section-label">Objects</div>
+            <div class="tile-objects">
+              <img src="static/images/inputs/1e60f202.jpg" alt="wine">
+              <img src="static/images/inputs/1df7d7e9.jpg" alt="salad">
+              <img src="static/images/inputs/8ac8a148.jpg" alt="sauce">
+              <img src="static/images/inputs/0adf522f.jpg" alt="watermelon">
+              <img src="static/images/inputs/0b6e1c5a.jpg" alt="plate">
+            </div>
+            <div class="tile-section-label">Background</div>
+            <div class="tile-bg"><img src="static/images/inputs/bg51.jpg" alt="background"></div>
+            <div class="tile-arrow">&#9660;</div>
+            <div class="tile-output"><img src="static/images/examples/8_1.png" alt="result: food items on table"></div>
+            <div class="tile-caption">5 objects</div>
+          </div>
+
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Method Overview -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Method Overview</h2>
+    <div class="columns is-centered" style="align-items: center;">
+      <div class="column is-7">
+        <img src="static/images/placid_architecture.jpg" alt="PLACID model architecture" style="width: 100%; border-radius: 6px;">
+      </div>
+      <div class="column is-5">
+        <div class="content has-text-justified" style="font-size: 0.92rem;">
+          <p>
+            Our architecture builds upon an image-to-video diffusion transformer (DiT) with text guidance.
+            The visual inputs, encoded via CLIP, include: (i)&nbsp;first frame F<sub>1</sub> (a random assembly of
+            unprocessed object images), (ii)&nbsp;individual object images I<sub>1..N</sub>, and (iii)&nbsp;an optional
+            background&nbsp;B.
+          </p>
+          <p>
+            A caption describing the desired composition is encoded via T5.
+            Image and text encodings are fed to the DiT through separate cross-attention mechanisms.
+            The model flexibly handles varying numbers of objects, with or without a background image.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Training Data Generation -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Training Data Generation</h2>
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          <p>
+            We synthesize short videos where objects follow smooth, physically plausible trajectories
+            from initial random locations to desired final positions. This temporal scaffold helps preserve object identity
+            during movement and prevents object erasure or duplication.
+            We obtain training data from three complementary sources, yielding about 50K diverse annotated tuples:
+            in-the-wild Unsplash compositions, manually designed layouts, Subject-200k paired data, and synthetic side-by-side 3D renders.
+          </p>
+        </div>
+        <img src="static/images/placid_training_data.jpg" alt="Training data generation pipeline" style="width: 100%; margin-bottom: 1rem; border-radius: 6px;">
+        <p class="has-text-centered" style="font-size: 0.85rem; color: #666; margin-bottom: 1.5rem;">
+          <b>Top:</b> Naive interpolation produces half-faded objects.
+          <b>Bottom:</b> Our motion-based trajectories yield temporally consistent videos.
+        </p>
+        <div class="traindata-video-grid">
+          <div>
+            <video autoplay loop muted playsinline>
+              <source src="static/videos/training_data/supmat_unsplash.mp4" type="video/mp4">
+            </video>
+            <div class="td-video-label">Unsplash (in-the-wild)</div>
+          </div>
+          <div>
+            <video autoplay loop muted playsinline>
+              <source src="static/videos/training_data/supmat_figmarot_pinkmakeup2.mp4" type="video/mp4">
+            </video>
+            <div class="td-video-label">Manual designs</div>
+          </div>
+          <div>
+            <video autoplay loop muted playsinline>
+              <source src="static/videos/training_data/motion_subject200k_3.mp4" type="video/mp4">
+            </video>
+            <div class="td-video-label">Subject-200k pairs</div>
+          </div>
+          <div>
+            <video autoplay loop muted playsinline>
+              <source src="static/videos/training_data/supmat_RGBA4.mp4" type="video/mp4">
+            </video>
+            <div class="td-video-label">Synthetic side-by-side</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Comparison to State of the Art -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-widescreen">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <h2 class="title is-3">Comparison to State of the Art</h2>
+        <div class="content">
+          <img src="static/images/placid_comparison.png" alt="Comparison to state of the art methods" style="width: 100%; margin-bottom: 1rem;">
+          <p class="has-text-justified">
+            Qualitative comparison of PLACID to VACE, UNO, DSD, OmniGen, MS-Diffusion, NanoBanana
+            and Qwen-Image-Edit. PLACID achieves superior identity preservation, background fidelity,
+            and fewer missing objects across diverse compositing scenarios.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quantitative Results & User Studies -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered">Quantitative Results & User Studies</h2>
+    <div class="columns is-centered" style="align-items: flex-start; flex-wrap: nowrap;">
+      <!-- Quantitative Results: 50% -->
+      <div class="column" style="flex: 0 0 50%; max-width: 50%; min-width: 0; box-sizing: border-box;">
+        <div class="content" style="overflow-x: auto;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th style="text-align: left;">Method</th>
+                <th>CLIP-I &uarr;</th>
+                <th>DINO &uarr;</th>
+                <th>CLIP-T &uarr;</th>
+                <th>MSE-BG &darr;</th>
+                <th>Chamfer &darr;</th>
+                <th>Missing &darr;</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="section-header"><td colspan="7">Multi-Subject Guided Image Generation</td></tr>
+              <tr>
+                <td class="method-name">UNO</td>
+                <td>0.696</td><td>0.450</td><td>0.346</td><td>0.062</td><td>14.733</td><td>0.099</td>
+              </tr>
+              <tr>
+                <td class="method-name">DSD</td>
+                <td>0.650</td><td>0.362</td><td>0.347</td><td>0.083</td><td>11.886</td><td>0.102</td>
+              </tr>
+              <tr>
+                <td class="method-name">OmniGen</td>
+                <td>0.724</td><td>0.478</td><td>0.337</td><td>0.119</td><td>15.120</td><td>0.128</td>
+              </tr>
+              <tr>
+                <td class="method-name">MS-Diffusion</td>
+                <td>0.574</td><td>0.245</td><td>0.314</td><td>0.166</td><td>16.322</td><td>0.071</td>
+              </tr>
+              <tr class="section-header"><td colspan="7">Image and Video Editing Models</td></tr>
+              <tr>
+                <td class="method-name">VACE</td>
+                <td>0.689</td><td>0.439</td><td>0.343</td><td>0.096</td><td>9.948</td><td>0.096</td>
+              </tr>
+              <tr>
+                <td class="method-name">NanoBanana</td>
+                <td>0.662</td><td>0.390</td><td>0.344</td><td>0.029</td><td>13.146</td><td>0.138</td>
+              </tr>
+              <tr>
+                <td class="method-name">Qwen</td>
+                <td>0.625</td><td>0.308</td><td>0.317</td><td>0.097</td><td>49.317</td><td>0.115</td>
+              </tr>
+              <tr class="ours">
+                <td class="method-name">Ours (PLACID)</td>
+                <td class="best">0.705</td><td class="best">0.440</td><td>0.336</td>
+                <td class="best">0.019</td><td class="best">4.641</td><td class="best">0.044</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="has-text-justified" style="margin-top: 0.75rem; font-size: 0.82rem; color: #555;">
+          Metrics: Missing (% objects missing), CLIP-I/DINO (identity preservation),
+          CLIP-T (text alignment), Chamfer (background color fidelity), MSE-BG (background faithfulness).
+        </p>
+      </div>
+      <!-- User Studies: 50% -->
+      <div class="column" style="flex: 0 0 50%; max-width: 50%; min-width: 0; box-sizing: border-box;">
+        <img src="static/images/placid_userstudy.png" alt="User study results" style="width: 100%; border-radius: 6px;">
+        <p class="has-text-justified" style="margin-top: 0.75rem; font-size: 0.82rem; color: #555;">
+          User studies with 1265 side-by-side comparisons by eight external users,
+          assessing identity preservation and overall visual preference. PLACID outperforms
+          all open-source alternatives in both studies.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Emerging Capabilities -->
+<section class="section" style="padding-top: 0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Emerging Capabilities</h2>
+        <div class="content">
+          <img src="static/images/placid_emerging.jpg" alt="Emerging capabilities of PLACID" style="width: 100%; margin-bottom: 1rem;">
+          <div class="has-text-justified">
+            <p>
+              While PLACID is trained for text-guided multi-object compositing, it exhibits several emerging capabilities:
+            </p>
+            <ul>
+              <li><b>Creative Composite Layouts:</b> Automatically arranges objects in plausible scenes without explicit layout guidance.</li>
+              <li><b>Multi-Entity Subject-Driven Generation:</b> Creates photorealistic scenes from text even without a background image, including interacting elements.</li>
+              <li><b>Virtual Try-On:</b> Integrates new objects into existing scenes, enabling applications such as virtual clothing try-on.</li>
+              <li><b>Image Editing:</b> Leverages text guidance, identity preservation, and fine-grained color control for tasks from simple color adjustments to complex compositional changes.</li>
+              <li><b>Video Generation:</b> Produces short, consistent videos for edits or scene completions, usable as animated creative content.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BibTeX -->
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{canettarres2026placid,
+  title={PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories},
+  author={Canet Tarr{\`e}s, Gemma and Baradad, Manel and Moreno-Noguer, Francesc and Li, Yumeng},
+  journal={arXiv preprint arXiv:2602.00267},
+  year={2026}
+}</code></pre>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content" style="text-align: center;">
+          <p>
+            The template for this website was borrowed from <a href="https://nerfies.github.io">Nerfies</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
