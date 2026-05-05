@@ -10,15 +10,16 @@ redirect_from:
 
 <div class="intro">
 <p align="justify">
-I am Manel Baradad Jurjo, last-year PhD student at MIT under the supervision of 
+I am Manel Baradad Jurjo, PhD from MIT (September 2024) under the supervision of
 <a href="http://web.mit.edu/torralba/www/">Prof. Antonio Torralba</a>.
-I currently work in representation learning and 3D scene understanding, but I am also interested in computational photography and graphics.
-Before coming to MIT, I did my undergrad at <a href="https://cfis.upc.edu/en">CFIS-UPC</a>, where I was 
-fortunate to work in the Image Processing Group under the supervision of 
+I currently work as an Applied Scientist at Amazon.
+My research spans image generation and representation learning, with past work in 3D scene understanding and computational photography.
+Before coming to MIT, I did my undergrad at <a href="https://cfis.upc.edu/en">CFIS-UPC</a>, where I was
+fortunate to work in the Image Processing Group under the supervision of
 <a href="https://imatge.upc.edu/web/people/xavier-giro">Prof. Xavier Giró-i-Nieto</a>.
 
 <br><br>
-<b>I'm looking for full-time industry opportunities starting June-September 2024.</b> You can contact me at: mbaradad at mit dot edu.
+You can contact me at: manelbaradad at gmail dot com.
 
 </p>
 </div>
@@ -26,31 +27,43 @@ fortunate to work in the Image Processing Group under the supervision of
 <div><h1>Publications</h1></div>
 <div id="publications">
     <article class="pub">
+        <a classa="pub_image"><img src="files/publications/12_placid/snapshot.gif"></a>
+        <div class="pub_text">
+            <h3 class="papertitle">PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion with Synthetic Trajectories</h3>
+            <h4 class="authors">
+                Gemma Canet Tarrés, <b>Manel Baradad</b>, Francesc Moreno-Noguer, Yumeng Li
+            </h4>
+            <p class="conference">CVPR 2026</p>
+            [<a href="https://arxiv.org/abs/2602.00267">paper</a>]
+            [<a href="https://gemmact.github.io/placid/">webpage</a>]
+        </div>
+    </article>
+
+    <article class="pub">
+        <a classa="pub_image"><img src="files/publications/11_separating_knowledge/snapshot.png"></a>
+        <div class="pub_text">
+            <h3 class="papertitle">Separating Knowledge and Perception with Procedural Data</h3>
+            <h4 class="authors">
+                Adrián Rodríguez-Muñoz, <b>Manel Baradad</b>, Phillip Isola, Antonio Torralba
+            </h4>
+            <p class="conference">ICML 2025</p>
+            [<a href="https://arxiv.org/abs/2508.11697">paper</a>]
+            [<a href="https://github.com/adrianrm99/separating_knowledge">code</a>]
+        </div>
+    </article>
+
+    <article class="pub">
         <a classa="pub_image"><img src="files/publications/10_vision_checkup/vision_checkup.png"></a>
         <div class="pub_text">
             <h3 class="papertitle">A Vision Check-up for Language Models</h3>
             <h4 class="authors">
                  Pratyusha Sharma*, Tamar Rott Shaham*, <b>Manel Baradad</b>, Stephanie Fu, Adrián Rodríguez-Muñoz, Shivam Duggal, Phillip Isola, Antonio Torralba 
             </h4>
-            <p class="conference">arxiv 2024</p>
+            <p class="conference">CVPR 2024</p>
             [<a href="https://arxiv.org/abs/2401.01862">paper</a>]
             [<a href="https://vision-checkup.csail.mit.edu">webpage</a>]
         </div>
     </article>
-
-    <article class="pub">
-        <a classa="pub_image"><img src="files/publications/9_deep_augment/deep_augment.png"></a>
-        <div class="pub_text">
-            <h3 class="papertitle">Deep Augmentation: Enhancing Self-Supervised Learning through Transformations in Higher Activation Space</h3>
-            <h4 class="authors">
-                 Rickard Brüel-Gabrielsson, Tongzhou Wang, <b>Manel Baradad</b>, Justin Solomon
-            </h4>
-            <p class="conference">arxiv 2023</p>
-            [<a href="https://arxiv.org/abs/2303.14537">paper</a>]
-        </div>
-    </article>
-
-
 
 
 
@@ -68,6 +81,17 @@ fortunate to work in the Image Processing Group under the supervision of
         </div>
     </article>
 
+    <article class="pub">
+        <a classa="pub_image"><img src="files/publications/9_deep_augment/deep_augment.png"></a>
+        <div class="pub_text">
+            <h3 class="papertitle">Deep Augmentation: Enhancing Self-Supervised Learning through Transformations in Higher Activation Space</h3>
+            <h4 class="authors">
+                 Rickard Brüel-Gabrielsson, Tongzhou Wang, <b>Manel Baradad</b>, Justin Solomon
+            </h4>
+            <p class="conference">arxiv 2023</p>
+            [<a href="https://arxiv.org/abs/2303.14537">paper</a>]
+        </div>
+    </article>
 
     <article class="pub">
         <a classa="pub_image"><img src="files/publications/6_shaders21k/snapshot.png"></a>
