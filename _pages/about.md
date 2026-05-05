@@ -19,7 +19,7 @@ fortunate to work in the Image Processing Group under the supervision of
 <a href="https://imatge.upc.edu/web/people/xavier-giro">Prof. Xavier Giró-i-Nieto</a>.
 
 <br><br>
-You can contact me at: manelbaradad at gmail dot com.
+You can contact me at: <a href="mailto:manelbaradad@gmail.com">manelbaradad@gmail.com</a>.
 
 </p>
 </div>
@@ -187,5 +187,4 @@ You can contact me at: manelbaradad at gmail dot com.
 	</article>
 	
 </div>
-
 

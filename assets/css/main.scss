@@ -40,28 +40,345 @@
 @import "vendor/magnific-popup/magnific-popup";
 @import "print";
 
-/* 
-	custom css
-*/ 
 
-#publications article  {
-    overflow: hidden;
+/* ==========================================================================
+   DARK ACADEMIC CUSTOM STYLES
+   ========================================================================== */
+
+/* ── Intro / bio section ── */
+
+.intro {
+  margin-bottom: 2em;
+  font-size: 1.02em;
+  line-height: 1.75;
+  color: #c9d1d9;
+}
+
+.intro p {
+  color: #c9d1d9;
+  margin-bottom: 0;
+}
+
+.intro a {
+  color: #58a6ff;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.intro a:hover {
+  color: #79c0ff;
+  border-bottom-color: #79c0ff;
+}
+
+/* ── Section headings (Publications h1) ── */
+
+.page__content > div > h1,
+.page__content > div h1 {
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  padding-bottom: 0.4em;
+  font-size: 1.35em;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #e6edf3;
+  border-bottom: 2px solid #3fb950;
+}
+
+/* ── Publication list wrapper ── */
+
+#publications {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+  margin-top: 0;
+}
+
+/* ── Individual publication card ── */
+
+#publications article.pub {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2em;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 10px;
+  padding: 1.0em 1.25em;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  float: none;
+}
+
+#publications article.pub:hover {
+  border-color: #3fb950;
+  box-shadow: 0 0 0 3px rgba(63, 185, 80, 0.08), 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* ── Publication thumbnail ── */
+
+#publications article a.pub_image,
+#publications article a[classa="pub_image"] {
+  display: block;
+  flex-shrink: 0;
+  width: 260px;
+  min-width: 260px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+#publications article a img,
+#publications article a.pub_image img,
+#publications article a[classa="pub_image"] img {
+  width: 260px;
+  min-width: 260px;
+  height: auto;
+  display: block;
+  float: none;
+  border-radius: 6px;
+  background-color: #0d1117;
+  border: 1px solid #30363d;
+  transition: border-color 0.2s ease;
+}
+
+#publications article.pub:hover a img {
+  border-color: #3fb950;
+}
+
+/* ── Publication text block ── */
+
+#publications article .pub_text {
+  flex: 1;
+  min-width: 0;
+  width: auto;
+  margin-left: 0;
+  float: none;
+}
+
+/* ── Paper title ── */
+
+h3.papertitle {
+  margin-top: 0;
+  margin-bottom: 0.25em;
+  font-size: 0.97em;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #e6edf3;
+}
+
+/* ── Authors line ── */
+
+h4.authors {
+  margin: 0.2em 0 0.35em;
+  font-size: 0.82em;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #8b949e;
+}
+
+h4.authors b {
+  color: #adbac7;
+  font-weight: 600;
+}
+
+/* ── Conference / venue badge ── */
+
+p.conference {
+  display: inline-block;
+  margin: 0.25em 0 0.55em 0;
+  padding: 0.18em 0.65em;
+  background: rgba(63, 185, 80, 0.1);
+  border: 1px solid rgba(63, 185, 80, 0.3);
+  color: #3fb950;
+  border-radius: 100px;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  line-height: 1.6;
+}
+
+/* ── Paper / code / webpage links ── */
+
+#publications .pub_text > a {
+  display: inline-block;
+  padding: 0.18em 0.55em;
+  margin: 0.1em 0.05em;
+  border: 1px solid #30363d;
+  border-radius: 5px;
+  font-size: 0.78em;
+  font-weight: 500;
+  color: #58a6ff;
+  text-decoration: none;
+  background: transparent;
+  transition: border-color 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+#publications .pub_text > a:hover {
+  border-color: #58a6ff;
+  background: rgba(88, 166, 255, 0.1);
+  color: #79c0ff;
+  text-decoration: none;
+}
+
+/* hide the [ ] brackets around links */
+#publications .pub_text {
+  /* keep brackets but style them subtly */
+  color: #484f58;
+  font-size: 0.9em;
+}
+
+/* ── Responsive: stack on small screens ── */
+
+@media (max-width: 600px) {
+  #publications article.pub {
+    flex-direction: column;
+  }
+
+  #publications article a.pub_image,
+  #publications article a[classa="pub_image"] {
     width: 100%;
+    min-width: 0;
+  }
+
+  #publications article a img,
+  #publications article a.pub_image img,
+  #publications article a[classa="pub_image"] img {
+    width: 100%;
+    min-width: 0;
+    height: auto;
+  }
 }
 
-#publications article a img{
-    background-color: black;
-    width: 30%;
-    float: left;
+/* ── Page title ── */
+
+.page__title {
+  color: #e6edf3;
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
+/* ── General link colors ── */
 
-#publications article .pub_text{
-    width: 67%;
-    margin-left: 3%;
-    float: left;
+.page__content a {
+  color: #58a6ff;
+  text-decoration: none;
 }
 
-#intro {
-    width: 70%;
+.page__content a:hover {
+  color: #79c0ff;
+  text-decoration: underline;
+}
+
+/* ── Tables ── */
+
+table {
+  border-color: #30363d;
+}
+
+th {
+  background-color: #161b22;
+  color: #c9d1d9;
+  border-color: #30363d;
+}
+
+td {
+  border-color: #30363d;
+}
+
+tr:nth-child(even) {
+  background-color: #161b22;
+}
+
+/* ── Code blocks ── */
+
+code,
+pre {
+  background-color: #161b22;
+  border-color: #30363d;
+  color: #e6edf3;
+}
+
+p > code {
+  background: #1c2128;
+  border-color: #30363d;
+  color: #e6edf3;
+}
+
+/* ── Horizontal rules ── */
+
+hr {
+  border-top-color: #30363d;
+}
+
+/* ── Blockquotes ── */
+
+blockquote {
+  border-left-color: #3fb950;
+  color: #8b949e;
+}
+
+/* ── Selection highlight ── */
+
+::selection {
+  background: rgba(63, 185, 80, 0.25);
+  color: #e6edf3;
+}
+
+/* ── Scrollbar (webkit) ── */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* ── Author name in sidebar ── */
+
+.author__name a {
+  color: #e6edf3 !important;
+  text-decoration: none;
+}
+
+/* ── Social icon links in sidebar ── */
+
+.author__urls a {
+  font-size: 0.8em;
+}
+
+/* ── Masthead site title ── */
+
+.masthead__menu-item--lg a {
+  color: #3fb950 !important;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── Form inputs ── */
+
+input,
+select,
+textarea {
+  background-color: #161b22;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+input:focus,
+textarea:focus {
+  border-color: #3fb950;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(63, 185, 80, 0.15);
 }

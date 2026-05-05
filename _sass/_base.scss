@@ -12,8 +12,9 @@ body {
   padding: 0;
   padding-bottom: 9em;
   color: $text-color;
+  background-color: $background-color;
   font-family: $global-font-family;
-  line-height: 1.5;
+  line-height: 1.6;
 
   &.overflow--hidden {
     /* when primary navigation is visible, the content in the background won't scroll */
@@ -248,8 +249,8 @@ figcaption {
     transition: $global-transition;
 
     &:hover {
-      color: #000;
-      border-bottom-color: #000;
+      color: $text-color;
+      border-bottom-color: $text-color;
     }
   }
 }

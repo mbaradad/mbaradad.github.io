@@ -49,12 +49,13 @@
 
   &--inverse {
     color: $gray !important;
-    border: 1px solid $light-gray !important; /* override*/
-    background-color: #fff;
+    border: 1px solid $border-color !important; /* override*/
+    background-color: $light-gray;
 
     &:hover {
-      color: #fff !important;
-      border-color: $gray;
+      color: $text-color !important;
+      border-color: $primary-color !important;
+      background-color: rgba($primary-color, 0.1);
     }
   }
 

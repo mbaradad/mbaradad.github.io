@@ -1,17 +1,28 @@
 .container {
     width:100%;
-    border:1px solid #d3d3d3;
+    border:1px solid #30363d;
+    border-radius: 6px;
+    overflow: hidden;
 }
 .container div {
     width:100%;
 }
 .container .header {
-    background-color:#d3d3d3;
-    padding: 2px;
+    background-color:#161b22;
+    border-bottom: 1px solid #30363d;
+    padding: 6px 10px;
     cursor: pointer;
     font-weight: bold;
+    color: #c9d1d9;
+    transition: background-color 0.15s ease;
+}
+.container .header:hover {
+    background-color: #21262d;
+    color: #3fb950;
 }
 .container .content {
     display: none;
-    padding : 5px;
+    padding: 8px 10px;
+    background-color: #0d1117;
+    color: #c9d1d9;
 }
