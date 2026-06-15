@@ -1,0 +1,109 @@
+---
+layout: single
+title: "Curriculum Vitae"
+permalink: /cv/
+author_profile: true
+---
+
+<style>
+#cv-actions { margin-bottom: 1.2em; display: flex; gap: 0.6em; flex-wrap: wrap; }
+#cv-frame {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  min-height: 600px;
+}
+
+/* Fullscreen overlay */
+#cv-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.55);
+  align-items: center;
+  justify-content: center;
+}
+#cv-overlay.open { display: flex; }
+#cv-overlay-inner {
+  position: relative;
+  width: 92vw;
+  max-width: 860px;
+  height: 90vh;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.35);
+}
+#cv-overlay-frame {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+#cv-overlay-close {
+  position: absolute;
+  top: 10px;
+  right: 14px;
+  background: rgba(0,0,0,0.55);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  z-index: 1;
+  padding: 0;
+}
+#cv-overlay-close:hover { background: rgba(0,0,0,0.8); }
+</style>
+
+<div id="cv-actions">
+  <a href="/files/cv.pdf" class="btn btn--primary btn--small">Download PDF</a>
+  <button class="btn btn--small" id="cv-open-btn">Open full page</button>
+</div>
+
+<iframe id="cv-frame" src="/files/cv.html" title="Curriculum Vitae" scrolling="no"></iframe>
+
+<!-- Fullscreen overlay -->
+<div id="cv-overlay" role="dialog" aria-modal="true" aria-label="CV full page">
+  <div id="cv-overlay-inner">
+    <button id="cv-overlay-close" aria-label="Close">&times;</button>
+    <iframe id="cv-overlay-frame" src="/files/cv.html" title="CV full page"></iframe>
+  </div>
+</div>
+
+<script>
+(function () {
+  // Auto-resize inline iframe to content height
+  var frame = document.getElementById('cv-frame');
+  function resizeInline() {
+    try {
+      var h = frame.contentDocument.documentElement.scrollHeight;
+      if (h > 0) frame.style.height = h + 'px';
+    } catch (e) {}
+  }
+  frame.addEventListener('load', resizeInline);
+  window.addEventListener('resize', function () { setTimeout(resizeInline, 100); });
+
+  // Overlay open / close
+  var overlay = document.getElementById('cv-overlay');
+  document.getElementById('cv-open-btn').addEventListener('click', function () {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeOverlay() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('cv-overlay-close').addEventListener('click', closeOverlay);
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeOverlay();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeOverlay();
+  });
+})();
+</script>

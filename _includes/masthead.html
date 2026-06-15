@@ -13,7 +13,11 @@
               {% else %}
               {% assign domain = base_path %}
             {% endif %}
-            <li class="masthead__menu-item"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
+            {% assign active = '' %}
+            {% if page.url == link.url or page.url == link.url | append: 'index.html' %}
+              {% assign active = ' masthead__menu-item--active' %}
+            {% endif %}
+            <li class="masthead__menu-item{{ active }}"><a href="{{ domain }}{{ link.url }}">{{ link.title }}</a></li>
           {% endfor %}
         </ul>
         <ul class="hidden-links hidden"></ul>

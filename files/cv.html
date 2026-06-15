@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manel Baradad — CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── Base ────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 11.5pt; }
+body {
+  font-family: "EB Garamond", Georgia, "Times New Roman", serif;
+  color: #1a1a1a;
+  line-height: 1.55;
+  background: #fff;
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 2.4cm 2.2cm 2.8cm;
+}
+a { color: #1a4e8a; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ── Header ──────────────────────────────────────────────────── */
+header {
+  margin-bottom: 1.8em;
+}
+header h1 {
+  font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+  font-size: 26pt;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #111;
+  margin-bottom: 0.5em;
+}
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1em 1.8em;
+  font-size: 9.5pt;
+  color: #555;
+  letter-spacing: 0.01em;
+}
+.contact a { color: #1a4e8a; }
+
+/* ── Section headings ────────────────────────────────────────── */
+h2 {
+  font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+  font-size: 8pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #fff;
+  background: #2d3748;
+  padding: 0.28em 0.7em 0.22em;
+  display: inline-block;
+  margin-top: 1.9em;
+  margin-bottom: 0.9em;
+}
+
+/* ── Generic entry ───────────────────────────────────────────── */
+.entry { margin-bottom: 0.95em; }
+
+.entry-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.4em 1.2em;
+}
+.org  {
+  font-weight: 600;
+  font-size: 11.5pt;
+  color: #111;
+}
+.date {
+  font-family: "Raleway", "Helvetica Neue", Arial, sans-serif;
+  font-size: 8.5pt;
+  font-weight: 600;
+  color: #888;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+}
+.role   {
+  font-style: italic;
+  color: #444;
+  font-size: 11pt;
+  margin-top: 0.05em;
+}
+.detail {
+  font-size: 10.5pt;
+  color: #555;
+  margin-top: 0.05em;
+}
+
+/* ── Bullet list ─────────────────────────────────────────────── */
+.bullets {
+  list-style: none;
+  margin: 0.5em 0 0 0;
+  padding: 0;
+}
+.bullets li {
+  padding-left: 1.2em;
+  position: relative;
+  margin-bottom: 0.28em;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  color: #333;
+}
+.bullets li::before {
+  content: "–";
+  position: absolute;
+  left: 0;
+  color: #999;
+}
+.bullets li.bullet-sep {
+  margin-top: 0.7em;
+}
+
+/* ── Publications ────────────────────────────────────────────── */
+.pub {
+  margin-bottom: 0.75em;
+  font-size: 10.5pt;
+  line-height: 1.5;
+  padding-left: 0.8em;
+  border-left: 2px solid #e2e8f0;
+}
+.pub-title {
+  font-weight: 600;
+  color: #111;
+}
+.pub-venue {
+  font-style: italic;
+  color: #555;
+}
+.pub b { font-weight: 700; color: #111; }
+
+/* ── Languages ───────────────────────────────────────────────── */
+.lang-line {
+  font-size: 11pt;
+  color: #333;
+}
+
+/* divider between header and body */
+.header-rule {
+  border: none;
+  border-top: 2px solid #2d3748;
+  margin: 0.6em 0 0;
+}
+
+/* ── Print / PDF ─────────────────────────────────────────────── */
+@page {
+  size: A4;
+  margin: 2.2cm 2cm 2.5cm;
+}
+@media print {
+  body  { max-width: none; padding: 0; margin: 0; }
+  a     { color: #1a1a1a; text-decoration: none; }
+  h2    { page-break-after: avoid; }
+  .entry { page-break-inside: avoid; }
+  .pub   { page-break-inside: avoid; }
+}
+</style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!--   HEADER                                                  -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<header>
+  <h1>Manel Baradad Jurjo</h1>
+  <div class="contact">
+    <a href="https://mbaradad.github.io">mbaradad.github.io</a>
+    <a href="mailto:manelbaradad@gmail.com">manelbaradad@gmail.com</a>
+    <span>+1&thinsp;(857)&thinsp;285-8967</span>
+    <a href="https://scholar.google.com/citations?user=XFfcwRcAAAAJ">Google Scholar</a>
+  </div>
+  <hr class="header-rule">
+</header>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!--   EDUCATION                                               -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<h2>Education</h2>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">CSAIL, Massachusetts Institute of Technology (MIT)</span>
+    <span class="date">2018 – 2024</span>
+  </div>
+  <div class="role">PhD, Computer Science</div>
+  <div class="detail">Advisor: Antonio Torralba</div>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">Polytechnic University of Catalonia (UPC)</span>
+    <span class="date">2015 – 2017</span>
+  </div>
+  <div class="role">MS, Electrical Engineering</div>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">CFIS, UPC</span>
+    <span class="date">2011 – 2015</span>
+  </div>
+  <div class="role">BS, Electrical Engineering</div>
+  <div class="role">BS, Computer Engineering</div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!--   EXPERIENCE                                              -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<h2>Work / Research Experience</h2>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">Amazon Science, BCN, Spain</span>
+    <span class="date">Sep 2024 – Present</span>
+  </div>
+  <div class="role">Applied Scientist</div>
+  <ul class="bullets">
+    <li>Applied research in image generation and understanding for product placement and
+        marketing campaigns, deployed at Amazon scale.</li>
+    <li>Trained and deployed large-scale multimodal diffusion models (vision-language and
+        image-editing foundation models) for product image generation using PyTorch and
+        distributed multi-GPU training.</li>
+    <li>Built end-to-end Python ML pipelines for data curation, large-scale training,
+        evaluation, and deployment of LLMs and vision-language models.</li>
+    <li class="bullet-sep">AGI team: designed and trained cartridges for Retrieval-Augmented Generation (RAG),
+        enabling context compression and efficient long-context inference for large language
+        models.</li>
+  </ul>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">Google, GeometricAI, NYC</span>
+    <span class="date">Jun 2023 – Feb 2024</span>
+  </div>
+  <div class="role">Research Internship</div>
+  <div class="detail">Research in volumetric rendering using wavelet decomposition</div>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">Google, Viscam, Cambridge, USA</span>
+    <span class="date">Jun 2022 – Sep 2022</span>
+  </div>
+  <div class="role">Research Internship</div>
+  <div class="detail">Research in object-centric depth reconstruction from single image</div>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">Uber ATG, San Francisco (remote)</span>
+    <span class="date">Jun 2020 – Sep 2020</span>
+  </div>
+  <div class="role">Research Summer Internship</div>
+  <div class="detail">Research in novel view synthesis for autonomous driving simulation</div>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">Research Assistant, CSAIL, MIT</span>
+    <span class="date">May 2017 – May 2018</span>
+  </div>
+  <div class="detail">Advisor: Antonio Torralba</div>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">Research Assistant, Image Processing Group, UPC</span>
+    <span class="date">Sep 2016 – Apr 2017</span>
+  </div>
+  <div class="detail">Advisor: Xavier Giró-i-Nieto</div>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">Zhilabs, Barcelona</span>
+    <span class="date">Jun 2015 – Oct 2016</span>
+  </div>
+  <div class="role">Software Engineer</div>
+  <div class="detail">Developed algorithms for root cause analysis in telecommunications networks</div>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">Research Assistant, Relational Algorithmics, Complexity and Learning Lab, UPC</span>
+    <span class="date">Feb 2015 – Jul 2015</span>
+  </div>
+  <div class="detail">Advisor: Ricard Gavaldà</div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!--   PUBLICATIONS                                            -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<h2>Publications</h2>
+
+<div class="pub">
+  <span class="pub-title">PLACID: Identity-Preserving Multi-Object Compositing via Video Diffusion
+    with Synthetic Trajectories</span><br>
+  Gemma Canet Tarrés, <b>Manel Baradad</b>, Francesc Moreno-Noguer, Yumeng Li.
+  <span class="pub-venue">CVPR 2026</span>
+</div>
+
+<div class="pub">
+  <span class="pub-title">Separating Knowledge and Perception with Procedural Data</span><br>
+  Adrián Rodríguez-Muñoz, <b>Manel Baradad</b>, Phillip Isola, Antonio Torralba.
+  <span class="pub-venue">ICML 2025</span>
+</div>
+
+<div class="pub">
+  <span class="pub-title">A Vision Check-up for Language Models</span><br>
+  Pratyusha Sharma, Tamar Rott Shaham, <b>Manel Baradad</b>, Stephanie Fu,
+  Adrián Rodríguez-Muñoz, Shivam Duggal, Phillip Isola, Antonio Torralba.
+  <span class="pub-venue">CVPR 2024 (Highlight)</span>
+</div>
+
+<div class="pub">
+  <span class="pub-title">Procedural Image Programs for Representation Learning</span><br>
+  <b>Manel Baradad</b>, Chun-Fu Chen, Jonas Wulff, Tongzhou Wang,
+  Rogerio Feris, Antonio Torralba, Phillip Isola.
+  <span class="pub-venue">NeurIPS 2022</span>
+</div>
+
+<div class="pub">
+  <span class="pub-title">Learning to See by Looking at Noise</span><br>
+  <b>Manel Baradad*</b>, Jonas Wulff*, Tongzhou Wang, Phillip Isola, Antonio Torralba.
+  <span class="pub-venue">NeurIPS 2021 (Spotlight)</span>
+</div>
+
+<div class="pub">
+  <span class="pub-title">Height and Uprightness Invariance for 3D Prediction From a Single View</span><br>
+  <b>Manel Baradad</b>, Antonio Torralba.
+  <span class="pub-venue">CVPR 2020</span>
+</div>
+
+<div class="pub">
+  <span class="pub-title">Using Unknown Occluders to Recover Hidden Scenes</span><br>
+  Adam B. Yedidia, <b>Manel Baradad</b>, Christos Thrampoulidis,
+  William T. Freeman, Gregory W. Wornell.
+  <span class="pub-venue">CVPR 2019</span>
+</div>
+
+<div class="pub">
+  <span class="pub-title">Inferring Light Fields From Shadows</span><br>
+  <b>Manel Baradad</b>, Vickie Ye, Adam B. Yedidia, Frédo Durand,
+  William T. Freeman, Gregory W. Wornell, Antonio Torralba.
+  <span class="pub-venue">CVPR 2018 (Spotlight)</span>
+</div>
+
+<div class="pub">
+  <span class="pub-title">Recurrent Neural Networks for Semantic Instance Segmentation</span><br>
+  Amaia Salvador, Miriam Bellver, Victor Campos, <b>Manel Baradad</b>,
+  Ferran Marques, Jordi Torres, Xavier Giro-i-Nieto.
+  <span class="pub-venue">CVPR 2018 DeepVision Workshop</span>
+</div>
+
+<div class="pub">
+  <span class="pub-title">Characterizing chronic disease and polymedication prescription patterns
+    from electronic health records</span><br>
+  Martí Zamora, <b>Manel Baradad</b>, Ester Amado, Silvia Cordomí, Esther Limón,
+  Juliana Ribera, Marta Arias, Ricard Gavaldà.
+  <span class="pub-venue">DSAA 2015</span>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!--   PREPRINTS                                               -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<h2>Preprints</h2>
+
+
+<div class="pub">
+  <span class="pub-title">Background Prompting for Improved Object Depth</span><br>
+  <b>Manel Baradad</b>, Yuanzhen Li, Forrester Cole, Michael Rubinstein,
+  Antonio Torralba, William T. Freeman, Varun Jampani.
+  <span class="pub-venue">arXiv 2023</span>
+</div>
+
+<div class="pub">
+  <span class="pub-title">Deep Augmentation: Enhancing Self-Supervised Learning through
+    Transformations in Higher Activation Space</span><br>
+  Rickard Brüel-Gabrielsson, Tongzhou Wang, <b>Manel Baradad</b>, Justin Solomon.
+  <span class="pub-venue">arXiv 2023</span>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!--   HONORS                                                  -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<h2>Honors and Awards</h2>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">"laCaixa" fellowship for graduate studies in USA</span>
+    <span class="date">2018</span>
+  </div>
+  <div class="detail">Full tuition and stipend for two years</div>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">"Fundació Catalunya-La Pedrera" fellowship</span>
+    <span class="date">2015</span>
+  </div>
+  <div class="detail">Full tuition of the Master's degree</div>
+</div>
+
+<div class="entry">
+  <div class="entry-row">
+    <span class="org">CFIS fellowship</span>
+    <span class="date">2012</span>
+  </div>
+  <div class="detail">Full tuition of the Bachelor's degree</div>
+</div>
+
+<!-- ╔══════════════════════════════════════════════════════╗ -->
+<!--   LANGUAGES                                               -->
+<!-- ╚══════════════════════════════════════════════════════╝ -->
+<h2>Languages</h2>
+<div class="entry">
+  <p class="lang-line">
+    English: Fluent &ensp;·&ensp;
+    Spanish, Catalan: Native &ensp;·&ensp;
+    French: Basic (in progress)
+  </p>
+</div>
+
+</body>
+</html>
